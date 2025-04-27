@@ -450,7 +450,7 @@ function actualizarBancas() {
             const partido = partidos.find(p => p.partido === d.partido);
             return partido ? colorPartidos(partido.alineacion) : "#999";
         })
-        .text(d => `<b>${d.partido}:</b> ${d.bancas} bancas`);
+        .text(d => "<b>" + d.partido + ":</b>"+ d.bancas +" bancas");
 }
 
 // Crear los sliders
