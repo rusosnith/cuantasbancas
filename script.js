@@ -383,7 +383,7 @@ function calcularDhondt(
     }
     // Inicializar resultado
     const resultado = partidosFiltrados.map((p) => ({
-        nombre: p.nombre,
+        partido: p.partido,
         votos: p.votos,
         porcentaje: p.porcentaje,
         bancas: 0
@@ -417,7 +417,7 @@ function actualizarBancas() {
     
     // Adaptar datos de partidos al formato requerido por calcularDhondt
     const partidosParaDhondt = partidos.filter(d=>d.partido != "EN BLANCO / ANULADOS").map(p => ({
-        nombre: p.partido,
+        partido: p.partido,
         porcentaje: p.porcentaje,
         color: colorPartidos(p.alineacion)
     }));
