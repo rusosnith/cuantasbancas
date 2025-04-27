@@ -407,10 +407,13 @@ function updatePercentages() {
 
 // Restablecer valores iniciales o desde la URL
 function resetValues() {
-    // Restablecer los valores iniciales del dataset
-    partidos.forEach((partido, index) => {
-        partido.porcentaje = initialValues[index].porcentaje;
-        partido.locked = false; // Desbloquear todos los sliders
+    // Restablecer los valores iniciales del dataset usando el nombre del partido
+    partidos.forEach((partido) => {
+        const inicial = initialValues.find(iv => iv.partido === partido.partido);
+        if (inicial) {
+            partido.porcentaje = inicial.porcentaje;
+            partido.locked = false;
+        }
     });
 
     // Limpiar los parámetros de la URL
