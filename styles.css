@@ -61,9 +61,9 @@ h3{
     max-width: 25%;
     font-weight: bold;
     display: flex;
-    align-items: center;
     font-size: 0.95rem;
-    overflow:hidden
+    overflow:hidden;
+    flex-flow: column;
 }
 
 .candidato-label{
