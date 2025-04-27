@@ -55,6 +55,8 @@ function copiarAlPortapapeles() {
             alert("No se pudo copiar el enlace. Por favor, inténtalo de nuevo.");
         });
 }
+// Hacer la función accesible globalmente para el onclick del HTML
+window.copiarAlPortapapeles = copiarAlPortapapeles;
 
 // Llamar a actualizarEnlacesDeCompartir cada vez que se actualice la URL
 actualizarURL = (function(originalActualizarURL) {

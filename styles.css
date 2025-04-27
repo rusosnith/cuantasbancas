@@ -12,6 +12,12 @@ body {
     margin: 20px auto;
 }
 
+.container p {
+        text-align: center;
+        width: 80%;
+        margin: auto;
+    }
+
 .modal{
     background-color: white;
     border-radius: 8px;
@@ -22,7 +28,7 @@ body {
 
 h1 {
     text-align: center;
-    margin-bottom: 20px;
+    margin-bottom: 5px;
 }
 
 h3{
@@ -90,7 +96,7 @@ h3{
 }
 .slider {
     flex-grow: 1;
-    margin: 0 10px;
+    margin: 0 1px;
     height: 10px;
     -webkit-appearance: none;
     appearance: none;
@@ -117,7 +123,7 @@ h3{
     box-shadow: 0 0 2px rgba(0,0,0,0.4);
 }
 .value-display {
-    width: 60px;
+    width: 53px;
     text-align: right;
     font-weight: bold;
 }
@@ -200,8 +206,8 @@ footer .credits i {
     align-items: center;
     max-width: 800px;
     flex-wrap: wrap;
-    gap: 10px;
-    padding: 10px;
+    gap: 6px;
+    padding: 6px;
     background-color: #ffffff;
     border: 1px solid #ddd;
     border-radius: 8px;
