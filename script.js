@@ -192,18 +192,7 @@ function createSliders() {
         .style("color", d => colorPartidos(d.alineacion))
         .text(d => d.partido)    
 
-    // Añadir iconos de candado
-    const lockIcons = labelContainers.append("span")
-        .attr("class", "lock-icon")
-        .attr("id", (d, i) => `lock-${i}`)
-        .html('<i class="fa-solid fa-lock"></i>')
-        .on("click", (event, d, i) => {
-            // Obtener el índice del dataset original
-            const index = partidos.findIndex(p => p.partido === d.partido);
-            toggleLock(index);
-        });
-    
-    // Añadir sliders
+    // Reorganizar los elementos en el orden correcto: label - slider - lock - valor
     containers.append("input")
         .attr("type", "range")
         .attr("class", "slider")
@@ -217,35 +206,33 @@ function createSliders() {
             const newValue = parseFloat(this.value);
             const oldValue = partidos[index].porcentaje;
             
-            // Verificar si podemos mover este slider sin romper el total
             if (canSliderMove(index, newValue)) {
                 partidos[index].porcentaje = newValue;
                 partidos[index].locked = true;
                 updateLockIcon(index);
-                
-                // Redistribuir el cambio entre los sliders no bloqueados
                 redistributeChange(oldValue - newValue);
-                
-                // Actualizar la interfaz
                 updatePercentages();
-                
-                // Actualizar la distribución de bancas
                 actualizarBancas();
-
-                // Actualizar la URL
                 actualizarURL();
             } else {
-                // Si no se puede mover, volver al valor anterior
                 this.value = oldValue;
             }
         });
-    
-    // Añadir displays de valores
+
+    containers.append("span")
+        .attr("class", "lock-icon")
+        .attr("id", (d, i) => `lock-${i}`)
+        .html('<i class="fa-solid fa-lock"></i>')
+        .on("click", (event, d, i) => {
+            const index = partidos.findIndex(p => p.partido === d.partido);
+            toggleLock(index);
+        });
+
     containers.append("div")
         .attr("class", "value-display")
         .attr("id", (d, i) => `value-${i}`)
         .text(d => d.porcentaje + "%");
-    
+
     // Inicializar los iconos de candado y colores de slider
     partidos.forEach((partido, index) => {
         updateLockIcon(index);

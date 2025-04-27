@@ -57,10 +57,10 @@ h1 {
     overflow:hidden
 }
 
-/* Cambiar la posición del icono de candado al lado del porcentaje y usar visibility */
+/* Ajustar el icono de candado para que esté junto al porcentaje y siempre visible */
 .lock-icon {
     margin-left: 10px; /* Espaciado después del porcentaje */
-    visibility: hidden; /* Ocultar pero mantener el espacio */
+    visibility: visible; /* Siempre visible */
     cursor: pointer;
     color: #555; /* Gris oscuro */
     transition: color 0.3s ease; /* Transición para hover */
@@ -68,10 +68,6 @@ h1 {
 
 .lock-icon:hover {
     color: #000; /* Cambiar a negro al pasar el mouse */
-}
-
-.slider-container:hover .lock-icon {
-    visibility: visible; /* Mostrar al pasar el mouse sobre el contenedor */
 }
 
 .lock-icon i {
