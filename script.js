@@ -416,7 +416,7 @@ function actualizarBancas() {
     const umbralPorcentual = parseFloat(document.getElementById('umbralPorcentual').value) || 0;
     
     // Adaptar datos de partidos al formato requerido por calcularDhondt
-    const partidosParaDhondt = partidos.filter(d=>d.partido != "EN BLANCO / ANULADOS").map(p => ({
+    const partidosParaDhondt = partidos.filter(d => d.partido != "EN BLANCO / ANULADOS").map(p => ({
         partido: p.partido,
         porcentaje: p.porcentaje,
         color: colorPartidos(p.alineacion)
@@ -433,6 +433,9 @@ function actualizarBancas() {
         }
     );
     
+    // Ordenar resultados de mayor a menor cantidad de bancas
+    resultado.sort((a, b) => b.bancas - a.bancas);
+    
     // Mostrar resultados
     const bancasContainer = d3.select("#bancas-resultado");
     bancasContainer.html(""); // Limpiar contenedor
@@ -440,13 +443,12 @@ function actualizarBancas() {
     // Crear elementos para cada partido con bancas
     bancasContainer.selectAll(".banca-tag")
         .data(resultado)
-        .enter()
-        .append("div")
+        .join("div")
         .attr("class", "banca-tag")
         .style("background-color", d => {
-            // Buscar el color original del partido
+            // Buscar el color basado en la alineación del partido
             const partido = partidos.find(p => p.partido === d.partido);
-            return partido ? partido.color : "#999";
+            return partido ? colorPartidos(partido.alineacion) : "#999";
         })
         .text(d => `${d.partido}: ${d.bancas} bancas`);
 }
@@ -467,7 +469,7 @@ function createSliders() {
         .attr("class", "slider-label");
     
     labelContainers.append("span")
-        .style("color", d => d.color)
+        .style("color", d => colorPartidos(d.alineacion))
         .text(d => d.partido)    
 
     // Añadir iconos de candado
@@ -656,9 +658,7 @@ function updatePercentages() {
         updateSliderColor(index, partido.color, partido.porcentaje);
     });
     
-    // Mostrar el total
-    const total = partidos.reduce((sum, partido) => sum + partido.porcentaje, 0);
-    d3.select("#totalPercentage").text(total.toFixed(1));
+   
 }
 
 // Restablecer valores iniciales
@@ -681,9 +681,6 @@ function resetValues() {
         updateSliderColor(index, partido.color, partido.porcentaje);
     });
     
-    // Actualizar el total
-    const total = partidos.reduce((sum, partido) => sum + partido.porcentaje, 0);
-    d3.select("#totalPercentage").text(total.toFixed(1));
     
     // Actualizar la distribución de bancas
     actualizarBancas();
