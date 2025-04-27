@@ -16,13 +16,13 @@ const colorPartidos = d3
   ])
   .unknown("silver")
 
-// Función para actualizar la URL con los datos actuales de los sliders
+// Redondear los porcentajes a un decimal antes de actualizar la URL
 function actualizarURL() {
     const params = new URLSearchParams();
     partidos.forEach((partido, index) => {
         const id = Object.keys(partidoIds).find(key => partidoIds[key] === partido.partido);
         if (id) {
-            params.set(id, partido.porcentaje);
+            params.set(id, partido.porcentaje.toFixed(1)); // Redondear a un decimal
         }
     });
     history.replaceState(null, "", `?${params.toString()}`);
