@@ -655,7 +655,7 @@ function updatePercentages() {
     
     // Actualizar los colores de los sliders
     partidos.forEach((partido, index) => {
-        updateSliderColor(index, partido.color, partido.porcentaje);
+        updateSliderColor(index, colorPartidos(partido.alineacion), partido.porcentaje);
     });
     
    
