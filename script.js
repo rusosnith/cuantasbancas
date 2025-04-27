@@ -1,26 +1,355 @@
 // Datos iniciales de los partidos
+
 const partidos = [
-    { partido: "UCeDe", color: "#FF0000", porcentaje: 25, locked: false },
-    { partido: "LA IZQUIERDA EN LA CIUDAD", color: "#0000FF", porcentaje: 18, locked: false },
-    { partido: "EVOLUCIÓN", color: "#00FF00", porcentaje: 12, locked: false },
-    { partido: "EL MOVIMIENTO", color: "#FFFF00", porcentaje: 10, locked: false },
-    { partido: "C. CIVICA - ARI", color: "#FF00FF", porcentaje: 8, locked: false },
-    { partido: "SEAMOS LIBRES", color: "#00FFFF", porcentaje: 7, locked: false },
-    { partido: "VOLVAMOS BUENOS AIRES", color: "#FFA500", porcentaje: 6, locked: false },
-    { partido: "FIT - UNIDAD", color: "#800080", porcentaje: 5, locked: false },
-    { partido: "FRENTE PATRIOTA FEDERAL", color: "#008000", porcentaje: 5, locked: false },
-    { partido: "LA LIBERTAD AVANZA", color: "#800000", porcentaje: 4, locked: false },
-    { partido: "BUENOS AIRES PRIMERO", color: "#800000", porcentaje: 4, locked: false },
-    { partido: "PRINCIPIOS Y VALORES", color: "#800000", porcentaje: 4, locked: false },
-    { partido: "CONFLUENCIA", color: "#800000", porcentaje: 4, locked: false },
-    { partido: "UNION PORTEÑA LIBERTARIA", color: "#800000", porcentaje: 4, locked: false },
-    { partido: "M.I.D", color: "#800000", porcentaje: 4, locked: false },
-    { partido: "MOVIMIENTO PLURAL", color: "#800000", porcentaje: 4, locked: false },
-    { partido: "EN BLANCO / ANULADOS", color: "#800000", porcentaje: 4, locked: false }
-];
+    {
+        "partido": "EVOLUCIÓN",
+        "partidoOrig": "EVOLUCIÓN",
+        "alineacion": "Ex oficialistas",
+        "candidatos": [
+            "LEVY",
+            "CEDEIRA",
+            "BARRETO",
+            "VAZQUEZ",
+            "LUDUEÑA SENLLE",
+            "KOLACZYK",
+            "SERVELLI",
+            "BITCHIK DANEL",
+            "BLAS ALAYO",
+            "AGNONE CONTE"
+        ],
+        "porcentaje": 25,
+        "locked": false
+    },
+    {
+        "partido": "VOLVAMOS BUENOS AIRES",
+        "partidoOrig": "VOLVAMOS BUENOS AIRES",
+        "alineacion": "Ex oficialistas",
+        "candidatos": [
+            "RODRIGUEZ LARRETA",
+            "TAGLIAFERRI",
+            "FERRARIO",
+            "BALBI",
+            "TELERMAN",
+            "FERESIN",
+            "CARZOGLIO",
+            "RODRIGUEZ",
+            "BORGES",
+            "MESISTRANO"
+        ],
+        "porcentaje": 22,
+        "locked": false
+    },
+    {
+        "partido": "COALICIÓN CIVICA - ARI",
+        "partidoOrig": "COALICIÓN CIVICA - AFIRMACIÓN PARA UNA REPUBLICA IGUALITARIA (ARI)",
+        "alineacion": "Ex oficialistas",
+        "candidatos": [
+            "OLIVETO LAGO",
+            "SÁNCHEZ",
+            "PACE",
+            "ESSWEIN",
+            "MACCIONE",
+            "ROSATI DÍAZ",
+            "MONSERRAT",
+            "BENTIVENGA",
+            "PALACIOS",
+            "MARTIODA CAMPOS"
+        ],
+        "porcentaje": 19,
+        "locked": false
+    },
+    {
+        "partido": "FIT - UNIDAD",
+        "partidoOrig": "FRENTE DE IZQUIERDA Y DE TRABAJADORES - UNIDAD",
+        "alineacion": "Izquierda",
+        "candidatos": [
+            "BIASI",
+            "BONFANTE",
+            "FIERRO",
+            "ALMEIDA",
+            "TRIMARCHI",
+            "ROMERO",
+            "NAVARRO PALACIOS",
+            "LIPCOVICH",
+            "FERNÁNDEZ MARTI",
+            "MÁSCOLO"
+        ],
+        "porcentaje": 8,
+        "locked": false
+    },
+    {
+        "partido": "LA IZQUIERDA EN LA CIUDAD",
+        "partidoOrig": "LA IZQUIERDA EN LA CIUDAD",
+        "alineacion": "Izquierda",
+        "candidatos": [
+            "WINOKUR",
+            "AZRIEL ALONSO",
+            "LEIVA",
+            "D AMBROSIO ROMERO",
+            "BRITO",
+            "RUEDA KRAMER",
+            "SAENZ",
+            "HIDALGO ROBLES",
+            "LUCIANO",
+            "HAEBERER"
+        ],
+        "porcentaje": 7,
+        "locked": false
+    },
+    {
+        "partido": "UNION PORTEÑA LIBERTARIA",
+        "partidoOrig": "UNION PORTEÑA LIBERTARIA",
+        "alineacion": "Libertarios",
+        "candidatos": [
+            "SANTORO",
+            "MUCHART",
+            "CAMPELO",
+            "SCAUZILLO",
+            "SZLAJEN",
+            "MÁRQUEZ",
+            "ROSALES",
+            "RIVERO",
+            "PICCIOLI",
+            "RENDICH"
+        ],
+        "porcentaje": 5,
+        "locked": false
+    },
+    {
+        "partido": "LA LIBERTAD AVANZA",
+        "partidoOrig": "LA LIBERTAD AVANZA",
+        "alineacion": "Libertarios",
+        "candidatos": [
+            "ADORNI",
+            "PELAYO",
+            "PAKGOJZ",
+            "FREGUIA",
+            "ARENAZA",
+            "MONTENEGRO",
+            "SAIFERT",
+            "FLEITAS",
+            "VARTABEDIAN",
+            "KIENAST"
+        ],
+        "porcentaje": 2,
+        "locked": false
+    },
+    {
+        "partido": "M.I.D",
+        "partidoOrig": "MOVIMIENTO DE INTEGRACIÓN Y DESARROLLO",
+        "alineacion": "Libertarios",
+        "candidatos": [
+            "CARUSO LOMBARDI",
+            "VILLAR",
+            "ARANCIO",
+            "LERNOUD",
+            "TESTORI SCHROEDER",
+            "RADICE",
+            "VEGA",
+            "YOUNG",
+            "DEVITA",
+            "DE SANTI"
+        ],
+        "porcentaje": 2,
+        "locked": false
+    },
+    {
+        "partido": "MOVIMIENTO PLURAL",
+        "partidoOrig": "MOVIMIENTO PLURAL",
+        "alineacion": "Libertarios",
+        "candidatos": [
+            "PERETTA",
+            "PERETTA ALEJANDRE",
+            "GONZÁLEZ",
+            "NIETO",
+            "ALTIERI",
+            "STARKER",
+            "FERNÁNDEZ",
+            "SALAS",
+            "FERRI",
+            "BONZO"
+        ],
+        "porcentaje": 1,
+        "locked": false
+    },
+    {
+        "partido": "UCeDe",
+        "partidoOrig": "UNION DEL CENTRO DEMOCRÁTICO",
+        "alineacion": "Libertarios",
+        "candidatos": [
+            "MARRA",
+            "MICHITTE",
+            "DEL PIANO",
+            "SANTAGADA",
+            "RODRIGUEZ DE LA TORRE",
+            "BENEGAS",
+            "FURMAN",
+            "BRIZUELA ACOSTA",
+            "LECKIE",
+            "MARTINEZ CACERES"
+        ],
+        "porcentaje": 1,
+        "locked": false
+    },
+    {
+        "partido": "EL MOVIMIENTO",
+        "partidoOrig": "EL MOVIMIENTO",
+        "alineacion": "Libertarios",
+        "candidatos": [
+            "ZURBRIGGEN SCHALLER",
+            "ARIAS",
+            "GOLDSMAN",
+            "LEVIN",
+            "CIGARRÁN",
+            "SUSBIELLES",
+            "PANAL",
+            "SPENA",
+            "FERREYRA",
+            "ROMERO"
+        ],
+        "porcentaje": 1,
+        "locked": false
+    },
+    {
+        "partido": "ES AHORA BUENOS AIRES",
+        "partidoOrig": "ES AHORA BUENOS AIRES",
+        "alineacion": "Peronismo",
+        "candidatos": [
+            "SANTORO",
+            "NEGRI",
+            "MOCHI",
+            "GONZÁLEZ",
+            "MODARELLI",
+            "GEMINIANI",
+            "SALVATIERRA",
+            "ROSSEN",
+            "CAPORICCIO",
+            "IAÑEZ"
+        ],
+        "porcentaje": 1,
+        "locked": false
+    },
+    {
+        "partido": "PRINCIPIOS Y VALORES",
+        "partidoOrig": "PRINCIPIOS Y VALORES",
+        "alineacion": "Peronismo",
+        "candidatos": [
+            "KIM",
+            "LIROLA",
+            "VÁZQUEZ",
+            "NOBREGA",
+            "COUTO",
+            "MORENO",
+            "SANSOBRINO",
+            "RUIZ",
+            "ALBISUA",
+            "MACCHI"
+        ],
+        "porcentaje": 1,
+        "locked": false
+    },
+    {
+        "partido": "SEAMOS LIBRES",
+        "partidoOrig": "SEAMOS LIBRES",
+        "alineacion": "Peronismo",
+        "candidatos": [
+            "ABAL MEDINA",
+            "PAPALEO",
+            "BERCOVICH",
+            "GARCIA VALLADARES",
+            "GALVANO",
+            "GODOY",
+            "DE FLORIAN",
+            "FREDES",
+            "DIAZ",
+            "FLEJSZ"
+        ],
+        "porcentaje": 1,
+        "locked": false
+    },
+    {
+        "partido": "BUENOS AIRES PRIMERO",
+        "partidoOrig": "BUENOS AIRES PRIMERO",
+        "alineacion": "Pro",
+        "candidatos": [
+            "LOSPENNATO",
+            "LOMBARDI",
+            "ALONSO",
+            "NIETO",
+            "FIGUEROA",
+            "WOLFF",
+            "MORALES GORLERI",
+            "GARCÍA BATALLÁN",
+            "BRACCIA",
+            "JARVIS"
+        ],
+        "porcentaje": 1,
+        "locked": false
+    },
+    {
+        "partido": "CONFLUENCIA",
+        "partidoOrig": "CONFLUENCIA - POR LA IGUALDAD Y LA SOBERANÍA",
+        "alineacion": "Vecinal",
+        "candidatos": [
+            "KOUTSOVITIS",
+            "ELGER VARGAS",
+            "RUEJAS",
+            "PARRA",
+            "BIANCO",
+            "BALDIVIEZO",
+            "GONZALEZ GASS",
+            "CAMPORA",
+            "ACEVEDO",
+            "MARMONI"
+        ],
+        "porcentaje": 1,
+        "locked": false
+    },
+    {
+        "partido": "FRENTE PATRIOTA FEDERAL",
+        "partidoOrig": "FRENTE PATRIOTA FEDERAL",
+        "alineacion": "Vecinal",
+        "candidatos": [
+            "BIONDINI",
+            "CARDOZO",
+            "JAIME",
+            "QUINODOZ",
+            "ROSAS",
+            "LOZADA",
+            "ZELENEÑKI",
+            "NOLASCO",
+            "VIVES",
+            "AUCE"
+        ],
+        "porcentaje": 1,
+        "locked": false
+    },
+    {
+        "partido": "EN BLANCO / ANULADOS",
+        "partidoOrig": "EN BLANCO / ANULADOS",
+        "alineacion": "Blanco",
+        "candidatos": [],
+        "porcentaje": 1,
+        "locked": false
+    }
+]
 
 // Guardar los valores iniciales para poder restablecerlos
 const initialValues = partidos.map(p => ({ porcentaje: p.porcentaje, locked: p.locked }));
+
+const colorPartidos = d3
+  .scaleOrdinal()
+  .range(["#34aad7", "#efb118", "#c367b3", "#e86952", "#cb1f00", "#888"])
+  .domain([
+    "Peronismo",
+    "Pro",
+    "Libertarios",
+    "Ex oficialistas",
+    "Izquierda",
+    "Vecinal"
+  ])
+  .unknown("silver")
+
 
 // Función para calcular la distribución de bancas según D'Hondt
 function calcularDhondt(
@@ -87,10 +416,10 @@ function actualizarBancas() {
     const umbralPorcentual = parseFloat(document.getElementById('umbralPorcentual').value) || 0;
     
     // Adaptar datos de partidos al formato requerido por calcularDhondt
-    const partidosParaDhondt = partidos.filter(d=>d.nombre != "EN BLANCO / ANULADOS").map(p => ({
-        nombre: p.nombre,
+    const partidosParaDhondt = partidos.filter(d=>d.partido != "EN BLANCO / ANULADOS").map(p => ({
+        nombre: p.partido,
         porcentaje: p.porcentaje,
-        color: p.color
+        color: colorPartidos(p.alineacion)
     }));
     
     // Calcular distribución de bancas
@@ -116,10 +445,10 @@ function actualizarBancas() {
         .attr("class", "banca-tag")
         .style("background-color", d => {
             // Buscar el color original del partido
-            const partido = partidos.find(p => p.name === d.nombre);
+            const partido = partidos.find(p => p.partido === d.partido);
             return partido ? partido.color : "#999";
         })
-        .text(d => `${d.nombre}: ${d.bancas} bancas`);
+        .text(d => `${d.partido}: ${d.bancas} bancas`);
 }
 
 // Crear los sliders
@@ -139,8 +468,8 @@ function createSliders() {
     
     labelContainers.append("span")
         .style("color", d => d.color)
-        .text(d => d.name);
-    
+        .text(d => d.partido)    
+
     // Añadir iconos de candado
     const lockIcons = labelContainers.append("span")
         .attr("class", "lock-icon")
@@ -148,7 +477,7 @@ function createSliders() {
         .html('<i class="fa-solid fa-lock"></i>')
         .on("click", (event, d, i) => {
             // Obtener el índice del dataset original
-            const index = partidos.findIndex(p => p.name === d.name);
+            const index = partidos.findIndex(p => p.partido === d.partido);
             toggleLock(index);
         });
     
@@ -159,16 +488,16 @@ function createSliders() {
         .attr("min", 0)
         .attr("max", 50)
         .attr("step", 0.1)
-        .attr("value", d => d.percentage)
+        .attr("value", d => d.porcentaje)
         .attr("id", (d, i) => `slider-${i}`)
         .on("input", function(event, d, i) {
-            const index = partidos.findIndex(p => p.name === d.name);
+            const index = partidos.findIndex(p => p.partido === d.partido);
             const newValue = parseFloat(this.value);
-            const oldValue = partidos[index].percentage;
+            const oldValue = partidos[index].porcentaje;
             
             // Verificar si podemos mover este slider sin romper el total
             if (canSliderMove(index, newValue)) {
-                partidos[index].percentage = newValue;
+                partidos[index].porcentaje = newValue;
                 partidos[index].locked = true;
                 updateLockIcon(index);
                 
@@ -190,18 +519,18 @@ function createSliders() {
     containers.append("div")
         .attr("class", "value-display")
         .attr("id", (d, i) => `value-${i}`)
-        .text(d => d.percentage + "%");
+        .text(d => d.porcentaje + "%");
     
     // Inicializar los iconos de candado y colores de slider
     partidos.forEach((partido, index) => {
         updateLockIcon(index);
-        updateSliderColor(index, partido.color, partido.percentage);
+        updateSliderColor(index, partido.color, partido.porcentaje);
     });
 }
 
 // Verificar si un slider puede moverse a un nuevo valor sin romper el total
 function canSliderMove(index, newValue) {
-    const oldValue = partidos[index].percentage;
+    const oldValue = partidos[index].porcentaje;
     const change = oldValue - newValue;
     
     // Si es una reducción, siempre se puede (los otros aumentarán)
@@ -210,7 +539,7 @@ function canSliderMove(index, newValue) {
     // Si es un aumento, necesitamos verificar que los sliders desbloqueados
     // puedan reducirse lo suficiente para compensar
     const unlockedTotal = partidos.reduce((sum, p, i) =>
-        i !== index && !p.locked ? sum + p.percentage : sum, 0);
+        i !== index && !p.locked ? sum + p.porcentaje : sum, 0);
     
     // El cambio absoluto que necesitamos compensar
     const absChange = Math.abs(change);
@@ -228,32 +557,32 @@ function redistributeChange(change) {
     if (unlockedSliders.length === 0) return;
     
     // Distribuir el cambio proporcionalmente
-    const totalUnlocked = unlockedSliders.reduce((sum, p) => sum + p.percentage, 0);
+    const totalUnlocked = unlockedSliders.reduce((sum, p) => sum + p.porcentaje, 0);
     
     // Actualizar los porcentajes de los sliders no bloqueados
     partidos.map(partido => {
         if (!partido.locked) {
-            const proportion = partido.percentage / totalUnlocked;
-            partido.percentage += change * proportion;
+            const proportion = partido.porcentaje / totalUnlocked;
+            partido.porcentaje += change * proportion;
             
             // Asegurar que está dentro de los límites
             return {
                 ...partido,
-                percentage: Math.max(0, Math.min(50, partido.percentage))
+                porcentaje: Math.max(0, Math.min(50, partido.porcentaje))
             };
         }
         return partido;
     });
     
     // Verificar si necesitamos ajustar para obtener exactamente 100%
-    const newTotal = partidos.reduce((sum, p) => sum + p.percentage, 0);
+    const newTotal = partidos.reduce((sum, p) => sum + p.porcentaje, 0);
     
     if (Math.abs(newTotal - 100) > 0.001 && unlockedSliders.length > 0) {
         // Encontrar el primer slider desbloqueado para ajustar
         const firstUnlockedIndex = partidos.findIndex(p => !p.locked);
         if (firstUnlockedIndex !== -1) {
-            partidos[firstUnlockedIndex].percentage += (100 - newTotal);
-            partidos[firstUnlockedIndex].percentage = Math.max(0, Math.min(50, partidos[firstUnlockedIndex].percentage));
+            partidos[firstUnlockedIndex].porcentaje += (100 - newTotal);
+            partidos[firstUnlockedIndex].porcentaje = Math.max(0, Math.min(50, partidos[firstUnlockedIndex].porcentaje));
         }
     }
 }
@@ -275,22 +604,22 @@ function updateLockIcon(index) {
 }
 
 // Actualizar el color de la parte activa del slider y el espacio disponible
-function updateSliderColor(index, color, percentage) {
+function updateSliderColor(index, color, porcentaje) {
     const slider = document.getElementById(`slider-${index}`);
     if (!slider) return;
     
-    const valuePercent = (percentage / 50) * 100; // Convertir al porcentaje del rango del slider
+    const valuePercent = (porcentaje / 50) * 100; // Convertir al porcentaje del rango del slider
     
     // Calcular el espacio disponible (lo que se puede aumentar)
     const totalOtherUnlocked = partidos.reduce((sum, p, i) =>
-        i !== index && !p.locked ? sum + p.percentage : sum, 0);
+        i !== index && !p.locked ? sum + p.porcentaje : sum, 0);
     
     // Si no hay sliders desbloqueados, el espacio disponible es 0
     let availableSpace = totalOtherUnlocked;
     if (availableSpace <= 0) availableSpace = 0;
     
     // Calcular el porcentaje máximo que podría alcanzar este slider
-    const maxPossiblePercentage = percentage + availableSpace;
+    const maxPossiblePercentage = porcentaje + availableSpace;
     const maxPercentInSlider = Math.min(50, maxPossiblePercentage);
     const availablePercent = (maxPercentInSlider / 50) * 100;
     
@@ -313,47 +642,47 @@ function updatePercentages() {
     // Actualizar todos los sliders usando d3.js
     d3.selectAll(".slider").each(function(d, i) {
         const index = i;
-        this.value = partidos[index].percentage;
+        this.value = partidos[index].porcentaje;
     });
     
     // Actualizar todos los displays de valores
     d3.selectAll(".value-display").each(function(d, i) {
         const index = i;
-        this.textContent = partidos[index].percentage.toFixed(1) + "%";
+        this.textContent = partidos[index].porcentaje.toFixed(1) + "%";
     });
     
     // Actualizar los colores de los sliders
     partidos.forEach((partido, index) => {
-        updateSliderColor(index, partido.color, partido.percentage);
+        updateSliderColor(index, partido.color, partido.porcentaje);
     });
     
     // Mostrar el total
-    const total = partidos.reduce((sum, partido) => sum + partido.percentage, 0);
+    const total = partidos.reduce((sum, partido) => sum + partido.porcentaje, 0);
     d3.select("#totalPercentage").text(total.toFixed(1));
 }
 
 // Restablecer valores iniciales
 function resetValues() {
     partidos.forEach((partido, index) => {
-        partido.percentage = initialValues[index].percentage;
+        partido.porcentaje = initialValues[index].porcentaje;
         partido.locked = initialValues[index].locked;
     });
     
     d3.selectAll(".slider").each(function(d, i) {
-        this.value = partidos[i].percentage;
+        this.value = partidos[i].porcentaje;
     });
     
     d3.selectAll(".value-display").each(function(d, i) {
-        this.textContent = partidos[i].percentage + "%";
+        this.textContent = partidos[i].porcentaje + "%";
     });
     
     partidos.forEach((partido, index) => {
         updateLockIcon(index);
-        updateSliderColor(index, partido.color, partido.percentage);
+        updateSliderColor(index, partido.color, partido.porcentaje);
     });
     
     // Actualizar el total
-    const total = partidos.reduce((sum, partido) => sum + partido.percentage, 0);
+    const total = partidos.reduce((sum, partido) => sum + partido.porcentaje, 0);
     d3.select("#totalPercentage").text(total.toFixed(1));
     
     // Actualizar la distribución de bancas
