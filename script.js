@@ -205,7 +205,7 @@ function createSliders() {
         .style("color", d => colorPartidos(d.alineacion))
         .text(d => d.partido)    
 
-    labelContainers.append("span"
+    labelContainers.append("span")
         .attr("class", "candidato-label")
         .style("color", d => colorPartidos(d.alineacion))
         .text(d => d.candidatos[0])    
