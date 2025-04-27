@@ -450,7 +450,7 @@ function actualizarBancas() {
             const partido = partidos.find(p => p.partido === d.partido);
             return partido ? colorPartidos(partido.alineacion) : "#999";
         })
-        .text(d => `${d.partido}: ${d.bancas} bancas`);
+        .text(d => `<b>${d.partido}:</b> ${d.bancas} bancas`);
 }
 
 // Crear los sliders
@@ -696,6 +696,9 @@ function init() {
     // Manejar cambios en los campos de configuración
     d3.select("#totalBancas").on("input", actualizarBancas);
     d3.select("#umbralPorcentual").on("input", actualizarBancas);
+    
+    // Asegurar que los colores de los sliders estén correctamente inicializados
+    updatePercentages();
     
     // Calcular distribución inicial de bancas
     actualizarBancas();
