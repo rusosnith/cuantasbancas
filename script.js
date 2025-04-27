@@ -197,6 +197,24 @@ function createSliders() {
         updateLockIcon(index);
         updateSliderColor(index, partido.color, partido.porcentaje);
     });
+
+    // Crear una referencia de colores y alineaciones debajo de los sliders
+    const referenciaContainer = d3.select("#sliders").append("div")
+        .attr("class", "referencia-container")
+        .style("margin-top", "20px");
+
+    referenciaContainer.selectAll(".referencia-item")
+        .data(colorPartidos.domain())
+        .enter()
+        .append("div")
+        .attr("class", "referencia-item")
+        .style("display", "flex")
+        .style("align-items", "center")
+        .style("margin-bottom", "5px")
+        .html(d => `
+            <div style="width: 20px; height: 20px; background-color: ${colorPartidos(d)}; margin-right: 10px; border-radius: 50%;"></div>
+            <span>${d}</span>
+        `);
 }
 
 // Verificar si un slider puede moverse a un nuevo valor sin romper el total
