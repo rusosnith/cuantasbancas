@@ -47,7 +47,7 @@ h1 {
     min-height: 20px;
 }
 
-slider-label {
+.slider-label {
     width: 129px;
     max-width: 25%;
     font-weight: bold;
