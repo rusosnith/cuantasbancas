@@ -44,11 +44,12 @@ h1 {
     display: flex;
     align-items: center;
     background-color: #f5f5f5;
-    height: 20px;
+    min-height: 20px;
 }
 
 slider-label {
     width: 129px;
+    max-width: 25%;
     font-weight: bold;
     display: flex;
     align-items: center;
