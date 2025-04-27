@@ -333,21 +333,23 @@ function resetValues() {
         partido.porcentaje = initialValues[index].porcentaje;
         partido.locked = initialValues[index].locked;
     });
-    
+
     d3.selectAll(".slider").each(function(d, i) {
         this.value = partidos[i].porcentaje;
     });
-    
+
     d3.selectAll(".value-display").each(function(d, i) {
         this.textContent = partidos[i].porcentaje + "%";
     });
-    
+
     partidos.forEach((partido, index) => {
         updateLockIcon(index);
         updateSliderColor(index, partido.color, partido.porcentaje);
     });
-    
-    
+
+    // Llamar a updatePercentages para actualizar los colores detrás de los sliders
+    updatePercentages();
+
     // Actualizar la distribución de bancas
     actualizarBancas();
 }
