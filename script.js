@@ -43,6 +43,19 @@ function actualizarEnlacesDeCompartir() {
     }
 }
 
+// Implementar la función copiarAlPortapapeles para copiar la URL actual al portapapeles
+function copiarAlPortapapeles() {
+    const urlActual = window.location.href;
+    navigator.clipboard.writeText(urlActual)
+        .then(() => {
+            alert("Enlace copiado al portapapeles");
+        })
+        .catch(err => {
+            console.error("Error al copiar el enlace: ", err);
+            alert("No se pudo copiar el enlace. Por favor, inténtalo de nuevo.");
+        });
+}
+
 // Llamar a actualizarEnlacesDeCompartir cada vez que se actualice la URL
 actualizarURL = (function(originalActualizarURL) {
     return function() {
@@ -322,9 +335,9 @@ function toggleLock(index) {
 function updateLockIcon(index) {
     const lockIcon = document.getElementById(`lock-${index}`);
     if (partidos[index].locked) {
-        lockIcon.style.display = "inline"; // Mostrar el candado si está bloqueado
+        lockIcon.style.visibility = "visible"; // Mostrar el candado si está bloqueado
     } else {
-        lockIcon.style.display = "none"; // Ocultar el candado si está desbloqueado
+        lockIcon.style.visibility = "hidden"; // Ocultar el candado si está desbloqueado
     }
 }
 
