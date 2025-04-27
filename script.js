@@ -399,17 +399,14 @@ function updatePercentages() {
 
 // Restablecer valores iniciales o desde la URL
 function resetValues() {
-    const params = new URLSearchParams(window.location.search);
-    if (params.toString()) {
-        // Si hay parámetros en la URL, restablecer a los valores de la URL
-        cargarDatosDesdeURL();
-    } else {
-        // Si no hay parámetros en la URL, restablecer a los valores iniciales
-        partidos.forEach((partido, index) => {
-            partido.porcentaje = initialValues[index].porcentaje;
-            partido.locked = initialValues[index].locked;
-        });
-    }
+    // Restablecer los valores iniciales del dataset
+    partidos.forEach((partido, index) => {
+        partido.porcentaje = initialValues[index].porcentaje;
+        partido.locked = false; // Desbloquear todos los sliders
+    });
+
+    // Limpiar los parámetros de la URL
+    history.replaceState(null, "", window.location.pathname);
 
     // Actualizar los sliders y valores visuales
     d3.selectAll(".slider").each(function(d, i) {
