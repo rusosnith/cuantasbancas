@@ -1,4 +1,4 @@
-import { partidos } from './datos.js';
+import { partidos, partidoIds } from './datos.js';
 
 // Guardar los valores iniciales para poder restablecerlos
 const initialValues = partidos.map(p => ({ porcentaje: p.porcentaje, locked: p.locked }));
