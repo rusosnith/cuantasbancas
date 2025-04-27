@@ -57,11 +57,18 @@ h1 {
     overflow:hidden
 }
 
+/* Cambiar la posición y estilo del icono de candado */
 .lock-icon {
-    margin-left: 10px;
+    margin-left: auto; /* Mover al lado derecho */
+    margin-right: 10px; /* Espaciado antes del porcentaje */
     cursor: pointer;
-    color: #ff6b00;
-    display: none; /* Oculto por defecto */
+    color: #555; /* Gris oscuro */
+    display: inline; /* Mostrar siempre */
+    transition: color 0.3s ease; /* Transición para hover */
+}
+
+.lock-icon:hover {
+    color: #000; /* Cambiar a negro al pasar el mouse */
 }
 
 .lock-icon i {
@@ -177,7 +184,6 @@ footer .credits i {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    flex-direction: column;
     max-width: 800px;
     flex-wrap: wrap;
     gap: 10px;
