@@ -44,9 +44,12 @@ h1 {
 .lock-icon {
     margin-left: 10px;
     cursor: pointer;
-    font-size: 18px;
     color: #ff6b00;
     display: none; /* Oculto por defecto */
+}
+
+.lock-icon i {
+    font-size: 14px;
 }
 .slider {
     flex-grow: 1;

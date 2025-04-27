@@ -1,19 +1,26 @@
 // Datos iniciales de los partidos
 const partidos = [
-    { name: "Partido A", color: "#FF0000", percentage: 25, locked: false },
-    { name: "Partido B", color: "#0000FF", percentage: 18, locked: false },
-    { name: "Partido C", color: "#00FF00", percentage: 12, locked: false },
-    { name: "Partido D", color: "#FFFF00", percentage: 10, locked: false },
-    { name: "Partido E", color: "#FF00FF", percentage: 8, locked: false },
-    { name: "Partido F", color: "#00FFFF", percentage: 7, locked: false },
-    { name: "Partido G", color: "#FFA500", percentage: 6, locked: false },
-    { name: "Partido H", color: "#800080", percentage: 5, locked: false },
-    { name: "Partido I", color: "#008000", percentage: 5, locked: false },
-    { name: "Partido J", color: "#800000", percentage: 4, locked: false }
+    { partido: "UCeDe", color: "#FF0000", porcentaje: 25, locked: false },
+    { partido: "LA IZQUIERDA EN LA CIUDAD", color: "#0000FF", porcentaje: 18, locked: false },
+    { partido: "EVOLUCIÓN", color: "#00FF00", porcentaje: 12, locked: false },
+    { partido: "EL MOVIMIENTO", color: "#FFFF00", porcentaje: 10, locked: false },
+    { partido: "C. CIVICA - ARI", color: "#FF00FF", porcentaje: 8, locked: false },
+    { partido: "SEAMOS LIBRES", color: "#00FFFF", porcentaje: 7, locked: false },
+    { partido: "VOLVAMOS BUENOS AIRES", color: "#FFA500", porcentaje: 6, locked: false },
+    { partido: "FIT - UNIDAD", color: "#800080", porcentaje: 5, locked: false },
+    { partido: "FRENTE PATRIOTA FEDERAL", color: "#008000", porcentaje: 5, locked: false },
+    { partido: "LA LIBERTAD AVANZA", color: "#800000", porcentaje: 4, locked: false },
+    { partido: "BUENOS AIRES PRIMERO", color: "#800000", porcentaje: 4, locked: false },
+    { partido: "PRINCIPIOS Y VALORES", color: "#800000", porcentaje: 4, locked: false },
+    { partido: "CONFLUENCIA", color: "#800000", porcentaje: 4, locked: false },
+    { partido: "UNION PORTEÑA LIBERTARIA", color: "#800000", porcentaje: 4, locked: false },
+    { partido: "M.I.D", color: "#800000", porcentaje: 4, locked: false },
+    { partido: "MOVIMIENTO PLURAL", color: "#800000", porcentaje: 4, locked: false },
+    { partido: "EN BLANCO / ANULADOS", color: "#800000", porcentaje: 4, locked: false }
 ];
 
 // Guardar los valores iniciales para poder restablecerlos
-const initialValues = partidos.map(p => ({ percentage: p.percentage, locked: p.locked }));
+const initialValues = partidos.map(p => ({ porcentaje: p.porcentaje, locked: p.locked }));
 
 // Función para calcular la distribución de bancas según D'Hondt
 function calcularDhondt(
@@ -80,9 +87,9 @@ function actualizarBancas() {
     const umbralPorcentual = parseFloat(document.getElementById('umbralPorcentual').value) || 0;
     
     // Adaptar datos de partidos al formato requerido por calcularDhondt
-    const partidosParaDhondt = partidos.map(p => ({
-        nombre: p.name,
-        porcentaje: p.percentage,
+    const partidosParaDhondt = partidos.filter(d=>d.nombre != "EN BLANCO / ANULADOS").map(p => ({
+        nombre: p.nombre,
+        porcentaje: p.porcentaje,
         color: p.color
     }));
     
@@ -138,7 +145,7 @@ function createSliders() {
     const lockIcons = labelContainers.append("span")
         .attr("class", "lock-icon")
         .attr("id", (d, i) => `lock-${i}`)
-        .html("🔒")
+        .html('<i class="fa-solid fa-lock"></i>')
         .on("click", (event, d, i) => {
             // Obtener el índice del dataset original
             const index = partidos.findIndex(p => p.name === d.name);
