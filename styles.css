@@ -169,3 +169,37 @@ footer .credits a:hover {
 footer .credits i {
     margin-right: 5px;
 }
+
+/* Estilos para el contenedor de referencias */
+.referencia-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    padding: 10px;
+    background-color: #ffffff;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    margin-top: 20px;
+}
+
+.referencia-item {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 5px;
+    background-color: #f9f9f9;
+    border-radius: 5px;
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+}
+
+.referencia-item div {
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+}
+
+.referencia-item span {
+    font-size: 0.9em;
+    color: #333;
+}
