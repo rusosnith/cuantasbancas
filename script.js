@@ -16,6 +16,57 @@ const colorPartidos = d3
   ])
   .unknown("silver")
 
+// Función para actualizar la URL con los datos actuales de los sliders
+function actualizarURL() {
+    const params = new URLSearchParams();
+    partidos.forEach((partido, index) => {
+        const id = Object.keys(partidoIds).find(key => partidoIds[key] === partido.partido);
+        if (id) {
+            params.set(id, partido.porcentaje);
+        }
+    });
+    history.replaceState(null, "", `?${params.toString()}`);
+}
+
+// Actualizar los enlaces de compartir con la URL actual
+function actualizarEnlacesDeCompartir() {
+    const urlActual = window.location.href;
+
+    const twitterLink = document.querySelector(".share-buttons a[href*='twitter.com']");
+    if (twitterLink) {
+        twitterLink.href = `https://twitter.com/intent/tweet?text=Descubre%20cuántas%20bancas%20puede%20obtener%20cada%20partido%20en%20${encodeURIComponent(urlActual)}`;
+    }
+
+    const whatsappLink = document.querySelector(".share-buttons a[href*='whatsapp.com']");
+    if (whatsappLink) {
+        whatsappLink.href = `https://api.whatsapp.com/send?text=Descubre%20cuántas%20bancas%20puede%20obtener%20cada%20partido%20en%20${encodeURIComponent(urlActual)}`;
+    }
+}
+
+// Llamar a actualizarEnlacesDeCompartir cada vez que se actualice la URL
+actualizarURL = (function(originalActualizarURL) {
+    return function() {
+        originalActualizarURL();
+        actualizarEnlacesDeCompartir();
+    };
+})(actualizarURL);
+
+// Función para cargar datos desde la URL
+function cargarDatosDesdeURL() {
+    const params = new URLSearchParams(window.location.search);
+    params.forEach((value, key) => {
+        const partido = partidos.find(p => partidoIds[key] === p.partido);
+        if (partido) {
+            partido.porcentaje = parseFloat(value);
+        }
+    });
+}
+
+// Llamar a cargarDatosDesdeURL al iniciar
+cargarDatosDesdeURL();
+
+// Llamar a actualizarEnlacesDeCompartir al cargar la página
+document.addEventListener("DOMContentLoaded", actualizarEnlacesDeCompartir);
 
 // Función para calcular la distribución de bancas según D'Hondt
 function calcularDhondt(
@@ -180,6 +231,9 @@ function createSliders() {
                 
                 // Actualizar la distribución de bancas
                 actualizarBancas();
+
+                // Actualizar la URL
+                actualizarURL();
             } else {
                 // Si no se puede mover, volver al valor anterior
                 this.value = oldValue;

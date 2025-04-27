@@ -324,3 +324,24 @@ export const partidos = [
         "locked": false
     }
 ];
+
+// Diccionario de IDs y partidos inventados
+export const partidoIds = {
+    "p1": "EVOLUCIÓN",
+    "p2": "VOLVAMOS BUENOS AIRES",
+    "p3": "COALICIÓN CIVICA - ARI",
+    "p4": "FIT - UNIDAD",
+    "p5": "LA IZQUIERDA EN LA CIUDAD",
+    "p6": "UNION PORTEÑA LIBERTARIA",
+    "p7": "LA LIBERTAD AVANZA",
+    "p8": "M.I.D",
+    "p9": "MOVIMIENTO PLURAL",
+    "p10": "UCeDe",
+    "p11": "EL MOVIMIENTO",
+    "p12": "ES AHORA BUENOS AIRES",
+    "p13": "PRINCIPIOS Y VALORES",
+    "p14": "SEAMOS LIBRES",
+    "p15": "BUENOS AIRES PRIMERO",
+    "p16": "CONFLUENCIA",
+    "p17": "FRENTE PATRIOTA FEDERAL"
+};
