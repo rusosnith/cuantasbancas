@@ -384,19 +384,27 @@ function updatePercentages() {
    
 }
 
-// Restablecer valores iniciales
+// Restablecer valores iniciales o desde la URL
 function resetValues() {
-    partidos.forEach((partido, index) => {
-        partido.porcentaje = initialValues[index].porcentaje;
-        partido.locked = initialValues[index].locked;
-    });
+    const params = new URLSearchParams(window.location.search);
+    if (params.toString()) {
+        // Si hay parámetros en la URL, restablecer a los valores de la URL
+        cargarDatosDesdeURL();
+    } else {
+        // Si no hay parámetros en la URL, restablecer a los valores iniciales
+        partidos.forEach((partido, index) => {
+            partido.porcentaje = initialValues[index].porcentaje;
+            partido.locked = initialValues[index].locked;
+        });
+    }
 
+    // Actualizar los sliders y valores visuales
     d3.selectAll(".slider").each(function(d, i) {
         this.value = partidos[i].porcentaje;
     });
 
     d3.selectAll(".value-display").each(function(d, i) {
-        this.textContent = partidos[i].porcentaje + "%";
+        this.textContent = partidos[i].porcentaje.toFixed(1) + "%";
     });
 
     partidos.forEach((partido, index) => {
