@@ -205,6 +205,12 @@ function createSliders() {
         .style("color", d => colorPartidos(d.alineacion))
         .text(d => d.partido)    
 
+    labelContainers.append("span"
+        .attr("class", "candidato-label")
+        .style("color", d => colorPartidos(d.alineacion))
+        .text(d => d.candidatos[0])    
+    
+
     // Reorganizar los elementos en el orden correcto: label - slider - lock - valor
     containers.append("input")
         .attr("type", "range")
