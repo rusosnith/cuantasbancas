@@ -121,6 +121,9 @@ function actualizarBancas() {
 
 // Crear los sliders
 function createSliders() {
+    // Ordenar los partidos por porcentaje antes de crear los sliders
+    partidos.sort((a, b) => b.porcentaje - a.porcentaje);
+
     const slidersContainer = d3.select("#sliders");
     
     // Crear contenedores para cada partido usando d3.js
