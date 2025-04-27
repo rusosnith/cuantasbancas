@@ -108,7 +108,7 @@ function actualizarBancas() {
     
     // Crear elementos para cada partido con bancas
     bancasContainer.selectAll(".banca-tag")
-        .data(resultado)
+        .data(resultado.filter(d => d.bancas > 0)) // Filtrar partidos con bancas
         .join("div")
         .attr("class", "banca-tag")
         .style("background-color", d => {

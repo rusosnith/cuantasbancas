@@ -24,7 +24,9 @@ h1 {
     padding: 5px 10px;
     border-radius: 15px;
     color: white;
-    display:block
+    display: inline-block;
+    margin-bottom: 5px;
+    margin-right: 10px;
 }
 
 .slider-container {
