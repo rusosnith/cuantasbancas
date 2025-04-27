@@ -54,6 +54,7 @@ h1 {
     display: flex;
     align-items: center;
     font-size: 0.95rem;
+    overflow:hidden
 }
 
 .lock-icon {

@@ -5,7 +5,7 @@ const initialValues = partidos.map(p => ({ porcentaje: p.porcentaje, locked: p.l
 
 const colorPartidos = d3
   .scaleOrdinal()
-  .range(["#34aad7", "#efb118", "#c367b3", "#e86952", "#cb1f00", "#888"])
+  .range(["#34aad7", "#efb118", "#c367b3", "#ff791d", "#cb1f00", "#888"])
   .domain([
     "Peronismo",
     "Pro",
