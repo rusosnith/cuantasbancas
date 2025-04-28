@@ -1,4 +1,4 @@
-
+import { colorPartidos } from './datos.js';
 
 // Función para preprocesar los datos
 function processData(data) {

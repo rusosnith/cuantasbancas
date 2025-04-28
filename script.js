@@ -1,6 +1,7 @@
 // 1. Importaciones y configuración inicial
 console.log("Script loaded: script.js");
-import { partidos, partidoIds, legislaturaCaba2025, queAlineacion, candidatos2025, createVisualization } from './datos.js';
+import { partidos, partidoIds, legislaturaCaba2025, queAlineacion, candidatos2025, colorPartidos } from './datos.js';
+import { createVisualization } from './script_viz.js';
 
 // 2. Variables globales y constantes
 let porcentajeMaximo = 40;
@@ -8,18 +9,6 @@ console.log("Initial configuration: porcentajeMaximo =", porcentajeMaximo);
 const initialValues = partidos.map(p => ({ porcentaje: p.porcentaje, locked: p.locked }));
 
 // 3. Utilidades generales (colores, helpers, etc)
-const colorPartidos = d3
-  .scaleOrdinal()
-  .range(["#34aad7", "#efb118", "#c367b3", "#ff791d", "#cb1f00", "#888"])
-  .domain([
-    "Peronismo",
-    "Pro",
-    "Libertarios",
-    "Ex oficialistas",
-    "Izquierda",
-    "Vecinal"
-  ])
-  .unknown("silver");
 
 // 4. Funciones de manipulación de URL y compartir
 function actualizarURL() {

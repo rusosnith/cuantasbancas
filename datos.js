@@ -1,5 +1,18 @@
 console.log("Script loaded: datos.js");
 
+export const colorPartidos = d3
+  .scaleOrdinal()
+  .range(["#34aad7", "#efb118", "#c367b3", "#ff791d", "#cb1f00", "#888"])
+  .domain([
+    "Peronismo",
+    "Pro",
+    "Libertarios",
+    "Ex oficialistas",
+    "Izquierda",
+    "Vecinal"
+  ])
+  .unknown("silver");
+
 // Function to load legislators from CSV
 export async function loadLegislatorsFromCSV() {
     console.log("Loading legislators from CSV...");
