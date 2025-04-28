@@ -39,6 +39,8 @@ function processData(data) {
 
 // Crear la visualización inicial
 export function createVisualization(currentData) {
+    console.log("datos iniciales", currentData);
+    // Preprocesar los datos
     const processedData = processData(currentData);
     const container = d3.select("#chart-container");
     
@@ -51,8 +53,8 @@ export function createVisualization(currentData) {
     
     // Añadir stacks para cada bloque
     const stacks = bloques.append("div")
-        .attr("class", "stack")
-        .attr("id", d => `stack-${d.bloque.replace(/\s+/g, '-').toLowerCase()}`);
+        .attr("class", "stack");
+       // .attr("id", d => `stack-${d.bloque.replace(/\s+/g, '-').toLowerCase()}`);
     
     // Crear bancas dentro de cada stack
     stacks.each(function(d) {
