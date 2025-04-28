@@ -1,6 +1,6 @@
 // 1. Importaciones y configuración inicial
 console.log("Script loaded: script.js");
-import { partidos, partidoIds, legislaturaCaba2025, queAlineacion } from './datos.js';
+import { partidos, partidoIds, legislaturaCaba2025, queAlineacion, candidatos2025 } from './datos.js';
 
 // 2. Variables globales y constantes
 let porcentajeMaximo = 40;
@@ -346,6 +346,8 @@ function actualizarBancas() {
             return partido ? colorPartidos(partido.alineacion) : "#999";
         })
         .html(d => "<b>" + d.partido + ":</b>"+ d.bancas +" bancas");
+
+
     bancasTotales = d3
                 .rollups(
                     legislaturaCaba2025,
