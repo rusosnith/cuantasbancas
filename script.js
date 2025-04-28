@@ -402,4 +402,6 @@ function init() {
     cargarDatosDesdeURL();
     actualizarEnlacesDeCompartir();
 }
-document.addEventListener("DOMContentLoaded", init);
+
+init();
+console.log("Application initialized.");
