@@ -1,12 +1,15 @@
+console.log("Script loaded: script.js");
+
 import { partidos, partidoIds, legislaturaCaba2025, queAlineacion } from './datos.js';
 
 // VALORES DE CONFIGURACIÓN
 let porcentajeMaximo = 40;
 
-
+console.log("Initial configuration: porcentajeMaximo =", porcentajeMaximo);
 
 // Guardar los valores iniciales para poder restablecerlos
 const initialValues = partidos.map(p => ({ porcentaje: p.porcentaje, locked: p.locked }));
+console.log("Initial values loaded:", initialValues);
 
 const colorPartidos = d3
   .scaleOrdinal()
@@ -19,10 +22,13 @@ const colorPartidos = d3
     "Izquierda",
     "Vecinal"
   ])
-  .unknown("silver")
+  .unknown("silver");
+
+console.log("Color scale initialized:", colorPartidos.domain());
 
 // Redondear los porcentajes a un decimal antes de actualizar la URL
 function actualizarURL() {
+    console.log("Updating URL with current percentages...");
     const params = new URLSearchParams();
     partidos.forEach((partido, index) => {
         const id = Object.keys(partidoIds).find(key => partidoIds[key] === partido.partido);
@@ -31,6 +37,7 @@ function actualizarURL() {
         }
     });
     history.replaceState(null, "", `?${params.toString()}`);
+    console.log("URL updated:", window.location.href);
 }
 
 // Actualizar los enlaces de compartir con la URL actual
@@ -189,9 +196,6 @@ function actualizarBancas() {
         })
         .html(d => "<b>" + d.partido + ":</b>"+ d.bancas +" bancas");
 
-
-       
-
          // preparar datos para la visualización de barras apiladas
        bancasTotales = d3
                 .rollups(
@@ -230,13 +234,11 @@ function actualizarBancas() {
     
     // Crear el gráfico de barras apiladas
     createVisualization(bancasTotales);
-    
-
-    
 }
 
 // Crear los sliders
 function createSliders() {
+    console.log("Creating sliders...");
     // Ordenar los partidos por porcentaje antes de crear los sliders
     partidos.sort((a, b) => b.porcentaje - a.porcentaje);
 
@@ -458,8 +460,6 @@ function updatePercentages() {
     partidos.forEach((partido, index) => {
         updateSliderColor(index, colorPartidos(partido.alineacion), partido.porcentaje);
     });
-    
-   
 }
 
 // Restablecer valores iniciales o desde la URL
@@ -498,21 +498,28 @@ function resetValues() {
 }
 
 // Inicializar la aplicación
-function init() {
+function 
+() {
+    console.log("Initializing application...");
     createSliders();
-    
+    console.log("Sliders created.");
+
     // Manejar el botón de reset
     d3.select("#resetButton").on("click", resetValues);
-    
+    console.log("Reset button handler attached.");
+
     // Manejar cambios en los campos de configuración
     d3.select("#totalBancas").on("input", actualizarBancas);
     d3.select("#umbralPorcentual").on("input", actualizarBancas);
-    
+    console.log("Input handlers for configuration attached.");
+
     // Asegurar que los colores de los sliders estén correctamente inicializados
     updatePercentages();
-    
+    console.log("Percentages updated.");
+
     // Calcular distribución inicial de bancas
     actualizarBancas();
+    console.log("Initial seat distribution calculated.");
 }
 
 // Iniciar cuando el DOM esté cargado

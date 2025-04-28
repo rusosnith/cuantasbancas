@@ -1,23 +1,26 @@
-// Load data from CSV file
-export const legislaturaCaba2025 = await d3.csv("LEgislatura CABA - legis2025_compatible.csv").then(data =>
-    data.map(row => ({
+console.log("Script loaded: datos.js");
+
+// Function to load legislators from CSV
+export async function loadLegislatorsFromCSV() {
+    console.log("Loading legislators from CSV...");
+    const data = await d3.csv("LEgislatura CABA - legis2025_compatible.csv");
+    console.log("CSV data loaded:", data);
+    return data.map(row => ({
         apellido: row.Apellido,
         nombre: row.Nombre,
         partido: row.Bloque,
         alineacion: row.sector,
         renueva: row.Renueva2025 === "1"
-    }))
-);
+    }));
+}
 
-
+export const legislaturaCaba2025 = await loadLegislatorsFromCSV();
 
 export var queAlineacion = d3.rollup(
     legislaturaCaba2025,
     (v) => v[0].Alineacion,
     (d) => d.partidoCorto
   )
-
-
 
 // Datos de los partidos políticos
 export const partidos = [
@@ -345,6 +348,8 @@ export const partidos = [
         "locked": false
     }
 ];
+
+console.log("Partidos data:", partidos);
 
 // Diccionario de IDs y partidos inventados
 export const partidoIds = {
