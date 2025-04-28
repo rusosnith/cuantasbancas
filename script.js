@@ -498,8 +498,7 @@ function resetValues() {
 }
 
 // Inicializar la aplicación
-function 
-() {
+function init() {
     console.log("Initializing application...");
     createSliders();
     console.log("Sliders created.");
