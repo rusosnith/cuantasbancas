@@ -1,6 +1,6 @@
 // 1. Importaciones y configuración inicial
 console.log("Script loaded: script.js");
-import { partidos, partidoIds, legislaturaCaba2025, queAlineacion, candidatos2025 } from './datos.js';
+import { partidos, partidoIds, legislaturaCaba2025, queAlineacion, candidatos2025, createVisualization } from './datos.js';
 
 // 2. Variables globales y constantes
 let porcentajeMaximo = 40;
@@ -382,6 +382,7 @@ function actualizarBancas() {
                     (d) => d.sector
                 )
                 .map((d) => d[1])
+
     createVisualization(bancasTotales);
 }
 
