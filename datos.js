@@ -14,7 +14,9 @@ export async function loadLegislatorsFromCSV() {
     }));
 }
 
-// Function to load legislators from CSV
+export const legislaturaCaba2025 = await loadLegislatorsFromCSV();
+
+// Function to load candidaturas from CSV
 export async function loadCandidatosFromCSV() {
     console.log("Loading Candidatos from CSV...");
     const data = await d3.csv("candidatos2025Export.csv");
