@@ -188,6 +188,51 @@ function actualizarBancas() {
             return partido ? colorPartidos(partido.alineacion) : "#999";
         })
         .html(d => "<b>" + d.partido + ":</b>"+ d.bancas +" bancas");
+
+
+       
+
+         // preparar datos para la visualización de barras apiladas
+       bancasTotales = d3
+                .rollups(
+                    legislaturaCaba2025,
+                    (v) => {
+                    return {
+                        bloque: v[0].sector,
+                        actuales: v.filter((d) => !d.Renueva2025).length,
+                        enJuego: v.filter((d) => d.Renueva2025).length,
+                        diputadosActuales: v
+                        .filter((d) => !d.Renueva2025)
+                        .map((d) => {
+                            return {
+                            apellido: d.Apellido,
+                            nombre: d.Nombre,
+                            partido: d.Bloque
+                            };
+                        }),
+                        ganadas: resultado
+                        .filter((d) => queAlineacion.get(d.nombre) == v[0].sector)
+                        .map((d) => {
+                            return {
+                            partido: d.nombre,
+                            bancas: d.bancas,
+                            diputados: candidatos2025
+                                .filter((d) => d.estatus == "titular")
+                                .filter((e) => e.partidoCorto === d.nombre)
+                                .filter((e) => +e["N° DE ORDEN"] <= d.bancas)
+                            };
+                        })
+                    };
+                    },
+                    (d) => d.sector
+                )
+                .map((d) => d[1])
+    
+    // Crear el gráfico de barras apiladas
+    createVisualization(bancasTotales);
+    
+
+    
 }
 
 // Crear los sliders

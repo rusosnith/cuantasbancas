@@ -2,151 +2,20 @@
 
 
 
- let currentData = [
-    {
-        bloque: "Peronismo",
-        actuales: 10,
-        enJuego: 4,
-        diputadosActuales: ["González", "Fernández", "Rodríguez", "López", "Martínez", "Sánchez", "Gómez", "Díaz", "Torres", "Ramírez"],
-        ganadas: [
-            { 
-                partido: "ES AHORA BUENOS AIRES", 
-                bancas: 5,
-                diputados: ["Pérez", "Acosta", "Hernández", "Suárez", "García"]
-            },
-            { 
-                partido: "PRINCIPIOS Y VALORES", 
-                bancas: 3,
-                diputados: ["Romero", "Benítez Larguísimo", "Castro"]
-            }
-        ]
-    },
-    {
-        bloque: "UCR",
-        actuales: 8,
-        enJuego: 3,
-        diputadosActuales: ["Álvarez", "Vázquez", "Molina", "Gutiérrez", "Flores", "Rojas", "Mendoza", "Ortega"],
-        ganadas: [
-            { 
-                partido: "JUNTOS POR EL CAMBIO", 
-                bancas: 4,
-                diputados: ["Silva", "Luna", "Cabrera", "Morales"]
-            }
-        ]
-    },
-    {
-        bloque: "PRO",
-        actuales: 9,
-        enJuego: 4,
-        diputadosActuales: ["Ríos", "Moreno", "Ortiz", "Franco", "Giménez", "Domínguez", "Navarro", "Aguilar", "Herrera"],
-        ganadas: [
-            { 
-                partido: "PROPUESTA REPUBLICANA", 
-                bancas: 5,
-                diputados: ["Medina", "Ramos", "Vargas", "Arias", "Reyes"]
-            },
-            { 
-                partido: "JUNTOS", 
-                bancas: 2,
-                diputados: ["Cruz", "Peralta"]
-            }
-        ]
-    },
-    {
-        bloque: "Izquierda",
-        actuales: 5,
-        enJuego: 2,
-        diputadosActuales: ["Maldonado", "Castillo", "Aguirre", "Miranda", "Carrasco"],
-        ganadas: [
-            { 
-                partido: "FRENTE DE IZQUIERDA", 
-                bancas: 3,
-                diputados: ["Figueroa", "Delgado", "Concepción García Márquez Del Alto Valle"]
-            }
-        ]
-    }
-];
 
-// Datos alternativos para simular actualización
-const alternativeData = [
-    {
-        bloque: "Peronismo",
-        actuales: 10,
-        enJuego: 4,
-        diputadosActuales: ["González", "Fernández", "Rodríguez", "López", "Martínez", "Sánchez", "Gómez", "Díaz", "Torres", "Ramírez"],
-        ganadas: [
-            { 
-                partido: "ES AHORA BUENOS AIRES", 
-                bancas: 3,
-                diputados: ["Pérez", "Acosta", "Hernández"]
-            },
-            { 
-                partido: "PRINCIPIOS Y VALORES", 
-                bancas: 6,
-                diputados: ["Romero", "Benítez Larguísimo", "Castro", "Álvarez", "Rojas", "Ortiz"]
-            }
-        ]
-    },
-    {
-        bloque: "UCR",
-        actuales: 8,
-        enJuego: 3,
-        diputadosActuales: ["Álvarez", "Vázquez", "Molina", "Gutiérrez", "Flores", "Rojas", "Mendoza", "Ortega"],
-        ganadas: [
-            { 
-                partido: "JUNTOS POR EL CAMBIO", 
-                bancas: 6,
-                diputados: ["Silva", "Luna", "Cabrera", "Morales", "Jiménez", "Paredes"]
-            }
-        ]
-    },
-    {
-        bloque: "PRO",
-        actuales: 9,
-        enJuego: 4,
-        diputadosActuales: ["Ríos", "Moreno", "Ortiz", "Franco", "Giménez", "Domínguez", "Navarro", "Aguilar", "Herrera"],
-        ganadas: [
-            { 
-                partido: "PROPUESTA REPUBLICANA", 
-                bancas: 2,
-                diputados: ["Medina", "Ramos"]
-            },
-            { 
-                partido: "JUNTOS", 
-                bancas: 1,
-                diputados: ["Cruz"]
-            }
-        ]
-    },
-    {
-        bloque: "Izquierda",
-        actuales: 5,
-        enJuego: 2,
-        diputadosActuales: ["Maldonado", "Castillo", "Aguirre", "Miranda", "Carrasco"],
-        ganadas: [
-            { 
-                partido: "FRENTE DE IZQUIERDA", 
-                bancas: 5,
-                diputados: ["Figueroa", "Delgado", "Rodríguez", "López", "García"]
-            }
-        ]
-    }
-];
-
-// Configuración de colores para los bloques
-const colorScale = d3.scaleOrdinal()
-    .domain(currentData.map(d => d.bloque))
-    .range(d3.schemeCategory10);
 
 // Función para preprocesar los datos
 function processData(data) {
+
+
+
     return data.map(bloque => {
         // Procesar las bancas no en juego
         const bancasNoEnJuego = bloque.actuales - bloque.enJuego;
         const diputadosNoEnJuego = bloque.diputadosActuales.slice(0, bancasNoEnJuego).map(apellido => ({
             tipo: "actual",
             apellido: apellido,
-            color: colorScale(bloque.bloque),
+            color: colorPartidos(bloque.bloque),
             opacity: 0.5,
             title: apellido
         }));
@@ -156,7 +25,7 @@ function processData(data) {
             partido.diputados.map(apellido => ({
                 tipo: "ganada",
                 apellido: apellido,
-                color: colorScale(bloque.bloque),
+                color: colorPartidos(bloque.bloque),
                 opacity: 1,
                 partido: partido.partido,
                 title: `${apellido} - ${partido.partido}`
@@ -173,7 +42,7 @@ function processData(data) {
 }
 
 // Crear la visualización inicial
-function createVisualization() {
+function createVisualization(currentData) {
     const processedData = processData(currentData);
     const container = d3.select("#chart-container");
     
@@ -244,7 +113,7 @@ function createLegend(data) {
     
     legendItems.append("div")
         .attr("class", "legend-color")
-        .style("background-color", d => colorScale(d.bloque));
+        .style("background-color", d => colorPartidos(d.bloque));
     
     legendItems.append("span")
         .text(d => d.bloque);
@@ -274,77 +143,3 @@ function updateVisualization(newData) {
     });
 }
 
-
-// Inicializar visualización
-createVisualization();
-
-// Evento para actualizar datos
-d3.select("#update-btn").on("click", function() {
-    currentData = currentData === alternativeData ? 
-        [
-            {
-                bloque: "Peronismo",
-                actuales: 10,
-                enJuego: 4,
-                diputadosActuales: ["González", "Fernández", "Rodríguez", "López", "Martínez", "Sánchez", "Gómez", "Díaz", "Torres", "Ramírez"],
-                ganadas: [
-                    { 
-                        partido: "ES AHORA BUENOS AIRES", 
-                        bancas: 5,
-                        diputados: ["Pérez", "Acosta", "Hernández", "Suárez", "García"]
-                    },
-                    { 
-                        partido: "PRINCIPIOS Y VALORES", 
-                        bancas: 3,
-                        diputados: ["Romero", "Benítez Larguísimo", "Castro"]
-                    }
-                ]
-            },
-            {
-                bloque: "UCR",
-                actuales: 8,
-                enJuego: 3,
-                diputadosActuales: ["Álvarez", "Vázquez", "Molina", "Gutiérrez", "Flores", "Rojas", "Mendoza", "Ortega"],
-                ganadas: [
-                    { 
-                        partido: "JUNTOS POR EL CAMBIO", 
-                        bancas: 4,
-                        diputados: ["Silva", "Luna", "Cabrera", "Morales"]
-                    }
-                ]
-            },
-            {
-                bloque: "PRO",
-                actuales: 9,
-                enJuego: 4,
-                diputadosActuales: ["Ríos", "Moreno", "Ortiz", "Franco", "Giménez", "Domínguez", "Navarro", "Aguilar", "Herrera"],
-                ganadas: [
-                    { 
-                        partido: "PROPUESTA REPUBLICANA", 
-                        bancas: 5,
-                        diputados: ["Medina", "Ramos", "Vargas", "Arias", "Reyes"]
-                    },
-                    { 
-                        partido: "JUNTOS", 
-                        bancas: 2,
-                        diputados: ["Cruz", "Peralta"]
-                    }
-                ]
-            },
-            {
-                bloque: "Izquierda",
-                actuales: 5,
-                enJuego: 2,
-                diputadosActuales: ["Maldonado", "Castillo", "Aguirre", "Miranda", "Carrasco"],
-                ganadas: [
-                    { 
-                        partido: "FRENTE DE IZQUIERDA", 
-                        bancas: 3,
-                        diputados: ["Figueroa", "Delgado", "Concepción García Márquez Del Alto Valle"]
-                    }
-                ]
-            }
-        ] : alternativeData;
-    
-    updateVisualization(currentData);
-});

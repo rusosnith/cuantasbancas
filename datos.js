@@ -1,3 +1,24 @@
+// Load data from CSV file
+export const legislaturaCaba2025 = await d3.csv("LEgislatura CABA - legis2025_compatible.csv").then(data =>
+    data.map(row => ({
+        apellido: row.Apellido,
+        nombre: row.Nombre,
+        partido: row.Bloque,
+        alineacion: row.sector,
+        renueva: row.Renueva2025 === "1"
+    }))
+);
+
+
+
+export var queAlineacion = d3.rollup(
+    legislaturaCaba2025,
+    (v) => v[0].Alineacion,
+    (d) => d.partidoCorto
+  )
+
+
+
 // Datos de los partidos políticos
 export const partidos = [
     {
