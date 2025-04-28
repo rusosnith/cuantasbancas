@@ -33,6 +33,7 @@ h1 {
 
 h3{
     margin:5px 1px;
+    text-align: center;
 }
 .bancas-container {
     display: flex;

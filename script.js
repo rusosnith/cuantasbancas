@@ -1,5 +1,10 @@
 import { partidos, partidoIds } from './datos.js';
 
+// VALORES DE CONFIGURACIÓN
+let porcentajeMaximo = 40;
+
+
+
 // Guardar los valores iniciales para poder restablecerlos
 const initialValues = partidos.map(p => ({ porcentaje: p.porcentaje, locked: p.locked }));
 
@@ -218,7 +223,7 @@ function createSliders() {
         .attr("type", "range")
         .attr("class", "slider")
         .attr("min", 0)
-        .attr("max", 50)
+        .attr("max", porcentajeMaximo)
         .attr("step", 0.1)
         .attr("value", d => d.porcentaje)
         .attr("id", (d, i) => `slider-${i}`)
@@ -265,7 +270,14 @@ function createSliders() {
         .attr("class", "referencia-container");
 
     referenciaContainer.selectAll(".referencia-item")
-        .data(colorPartidos.domain())
+        .data([
+                "Izquierda",
+                "Peronismo",
+                "Ex oficialistas",
+                "Vecinal",
+                "Pro",
+                "Libertarios"
+                ])
         .join("div")
         .attr("class", "referencia-item")
         .html(d => `
@@ -314,7 +326,7 @@ function redistributeChange(change) {
             // Asegurar que está dentro de los límites
             return {
                 ...partido,
-                porcentaje: Math.max(0, Math.min(50, partido.porcentaje))
+                porcentaje: Math.max(0, Math.min(porcentajeMaximo, partido.porcentaje))
             };
         }
         return partido;
@@ -328,7 +340,7 @@ function redistributeChange(change) {
         const firstUnlockedIndex = partidos.findIndex(p => !p.locked);
         if (firstUnlockedIndex !== -1) {
             partidos[firstUnlockedIndex].porcentaje += (100 - newTotal);
-            partidos[firstUnlockedIndex].porcentaje = Math.max(0, Math.min(50, partidos[firstUnlockedIndex].porcentaje));
+            partidos[firstUnlockedIndex].porcentaje = Math.max(0, Math.min(porcentajeMaximo, partidos[firstUnlockedIndex].porcentaje));
         }
     }
 }
@@ -354,7 +366,7 @@ function updateSliderColor(index, color, porcentaje) {
     const slider = document.getElementById(`slider-${index}`);
     if (!slider) return;
     
-    const valuePercent = (porcentaje / 50) * 100; // Convertir al porcentaje del rango del slider
+    const valuePercent = (porcentaje / porcentajeMaximo) * 100; // Convertir al porcentaje del rango del slider
     
     // Calcular el espacio disponible (lo que se puede aumentar)
     const totalOtherUnlocked = partidos.reduce((sum, p, i) =>
@@ -366,8 +378,8 @@ function updateSliderColor(index, color, porcentaje) {
     
     // Calcular el porcentaje máximo que podría alcanzar este slider
     const maxPossiblePercentage = porcentaje + availableSpace;
-    const maxPercentInSlider = Math.min(50, maxPossiblePercentage);
-    const availablePercent = (maxPercentInSlider / 50) * 100;
+    const maxPercentInSlider = Math.min(porcentajeMaximo, maxPossiblePercentage);
+    const availablePercent = (maxPercentInSlider / porcentajeMaximo) * 100;
     
     // Crear un gradiente de tres partes:
     // 1. Valor actual (color del partido)
