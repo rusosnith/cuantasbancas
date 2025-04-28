@@ -89,11 +89,7 @@ function cargarDatosDesdeURL() {
     });
 }
 
-// Llamar a cargarDatosDesdeURL al iniciar
-cargarDatosDesdeURL();
 
-// Llamar a actualizarEnlacesDeCompartir al cargar la página
-document.addEventListener("DOMContentLoaded", actualizarEnlacesDeCompartir);
 
 // Función para calcular la distribución de bancas según D'Hondt
 function calcularDhondt(
@@ -519,6 +515,15 @@ function init() {
     // Calcular distribución inicial de bancas
     actualizarBancas();
     console.log("Initial seat distribution calculated.");
+
+
+    // Llamar a cargarDatosDesdeURL al iniciar
+    cargarDatosDesdeURL();
+
+    // Llamar a actualizarEnlacesDeCompartir al cargar la página
+
+    actualizarEnlacesDeCompartir()
+
 }
 
 // Iniciar cuando el DOM esté cargado
