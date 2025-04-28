@@ -14,7 +14,21 @@ export async function loadLegislatorsFromCSV() {
     }));
 }
 
-export const legislaturaCaba2025 = await loadLegislatorsFromCSV();
+// Function to load legislators from CSV
+export async function loadCandidatosFromCSV() {
+    console.log("Loading Candidatos from CSV...");
+    const data = await d3.csv("candidatos2025Export.csv");
+    console.log("CSV data loaded:", data);
+    return data.map(row => ({
+        apellido: row.apellido,
+        nombre: row.nombre,
+        partido: row.partidoCorto,
+        alineacion: row.Alineacion,
+    }));
+}
+
+
+export const candidatos2025 = await loadCandidatosFromCSV();
 
 export var queAlineacion = d3.rollup(
     legislaturaCaba2025,

@@ -6,7 +6,6 @@ import { partidos, partidoIds, legislaturaCaba2025, queAlineacion } from './dato
 let porcentajeMaximo = 40;
 console.log("Initial configuration: porcentajeMaximo =", porcentajeMaximo);
 const initialValues = partidos.map(p => ({ porcentaje: p.porcentaje, locked: p.locked }));
-console.log("Initial values loaded:", initialValues);
 
 // 3. Utilidades generales (colores, helpers, etc)
 const colorPartidos = d3
@@ -21,7 +20,6 @@ const colorPartidos = d3
     "Vecinal"
   ])
   .unknown("silver");
-console.log("Color scale initialized:", colorPartidos.domain());
 
 // 4. Funciones de manipulación de URL y compartir
 function actualizarURL() {
