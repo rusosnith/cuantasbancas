@@ -348,7 +348,7 @@ function actualizarBancas() {
         .html(d => "<b>" + d.partido + ":</b>"+ d.bancas +" bancas");
 
 
-    bancasTotales = d3
+    var bancasTotales = d3
                 .rollups(
                     legislaturaCaba2025,
                     (v) => {
