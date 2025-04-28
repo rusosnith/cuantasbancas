@@ -1,4 +1,4 @@
-import { partidos, partidoIds } from './datos.js';
+import { partidos, partidoIds, legislaturaCaba2025, queAlineacion } from './datos.js';
 
 // VALORES DE CONFIGURACIÓN
 let porcentajeMaximo = 40;

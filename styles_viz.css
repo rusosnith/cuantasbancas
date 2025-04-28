@@ -1,7 +1,4 @@
-#bancas-visualization-container {
-    font-family: Arial, sans-serif;
-    margin: 20px;
-}
+
 #bancas-visualization-container .containerViz {
     display: flex;
     align-items: flex-end;

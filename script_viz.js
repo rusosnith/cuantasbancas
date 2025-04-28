@@ -1,7 +1,3 @@
-// Datos iniciales con apellidos de diputados
-
-
-
 
 
 // Función para preprocesar los datos
