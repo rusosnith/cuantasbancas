@@ -3,8 +3,15 @@ console.log("Script loaded: script.js");
 import { partidos, partidoIds, legislaturaCaba2025, queAlineacion, candidatos2025, colorPartidos } from './datos.js';
 import { createVisualization } from './script_viz.js';
 
+// === CONFIGURACIÓN GLOBAL ===
+const CONFIG = {
+    porcentajeMaximo: 40,
+    mostrarPanelBancasNuevas: false, // Cambia a false para ocultar el panel y no calcularlo
+};
+// ===========================
+
 // 2. Variables globales y constantes
-let porcentajeMaximo = 40;
+let porcentajeMaximo = CONFIG.porcentajeMaximo;
 const initialValues = partidos.map(p => ({ porcentaje: p.porcentaje, locked: p.locked }));
 
 // 3. Utilidades generales (colores, helpers, etc)
@@ -322,26 +329,31 @@ function actualizarBancas() {
     );
     resultado.sort((a, b) => b.bancas - a.bancas);
 
-    // Actualizar los tags de bancas usando enter/update/exit
-    const bancasContainer = d3.select("#bancas-resultado");
-    const bancasTags = bancasContainer.selectAll(".banca-tag")
-        .data(resultado.filter(d => d.bancas > 0), d => d.partido); // usando partido como key
+    if (CONFIG.mostrarPanelBancasNuevas) {
+        // Actualizar los tags de bancas usando enter/update/exit
+        const bancasContainer = d3.select("#bancas-resultado");
+        const bancasTags = bancasContainer.selectAll(".banca-tag")
+            .data(resultado.filter(d => d.bancas > 0), d => d.partido); // usando partido como key
 
-    // Enter: nuevos tags
-    const bancasTagsEnter = bancasTags.enter()
-        .append("div")
-        .attr("class", "banca-tag");
+        // Enter: nuevos tags
+        const bancasTagsEnter = bancasTags.enter()
+            .append("div")
+            .attr("class", "banca-tag");
 
-    // Update + Enter: aplicar estilos y contenido a todos
-    bancasTags.merge(bancasTagsEnter)
-        .style("background-color", d => {
-            const partido = partidos.find(p => p.partido === d.partido);
-            return partido ? colorPartidos(partido.alineacion) : "#999";
-        })
-        .html(d => "<b>" + d.partido + ":</b> " + d.bancas + " bancas");
+        // Update + Enter: aplicar estilos y contenido a todos
+        bancasTags.merge(bancasTagsEnter)
+            .style("background-color", d => {
+                const partido = partidos.find(p => p.partido === d.partido);
+                return partido ? colorPartidos(partido.alineacion) : "#999";
+            })
+            .html(d => "<b>" + d.partido + ":</b> " + d.bancas + " bancas");
 
-    // Exit: remover tags que ya no existen
-    bancasTags.exit().remove();
+        // Exit: remover tags que ya no existen
+        bancasTags.exit().remove();
+    } else {
+        // Si está desactivado, limpiar el panel
+        d3.select("#bancas-resultado").html("");
+    }
 
     console.log("legislaturaCABA", legislaturaCaba2025)
 
@@ -387,6 +399,10 @@ function actualizarBancas() {
 
 // 8. Arranque de la aplicación (init y event listener)
 function init() {
+    if (!CONFIG.mostrarPanelBancasNuevas) {
+        const modal = document.getElementById("bancas-modal");
+        if (modal) modal.style.display = "none";
+    }
     console.log("Initializing application...");
     createSliders();
     console.log("Sliders created.");
