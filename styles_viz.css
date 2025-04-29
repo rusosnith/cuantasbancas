@@ -2,11 +2,11 @@
     display: flex;
     align-items: flex-end;
     height: 390px;
-    gap: 0px;
-    margin-top: 30px;
+    gap: 4px;
+    margin-top: 10px;
     justify-content: center;
     max-width: 100%; /* Limita el ancho máximo del contenedor */
-    overflow: hidden; /* Evita que los elementos hijos desborden el contenedor */
+    overflow: auto; /* Evita que los elementos hijos desborden el contenedor */
 }
 #bancas-visualization-container .bloque {
     display: flex;

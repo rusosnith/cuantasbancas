@@ -207,8 +207,8 @@ footer .credits i {
     align-items: center;
     max-width: 800px;
     flex-wrap: wrap;
-    gap: 12px;
-    padding: 6px;
+    gap: 2px 12px;
+    padding: 3px;
     background-color: #ffffff;
     border: 1px solid #ddd;
     border-radius: 8px;
@@ -219,7 +219,7 @@ footer .credits i {
     display: flex;
     align-items: center;
     gap: 4px;
-    padding: 3px;
+    padding: 2px;
 }
 
 .referencia-item div {
