@@ -17,7 +17,6 @@ export const colorPartidos = d3
 export async function loadLegislatorsFromCSV() {
     console.log("Loading legislators from CSV...");
     const data = await d3.csv("LEgislatura CABA - legis2025_compatible.csv");
-    console.log("CSV data loaded:", data);
     return data.map(row => ({
         apellido: row.Apellido,
         nombre: row.Nombre,
@@ -33,7 +32,6 @@ export const legislaturaCaba2025 = await loadLegislatorsFromCSV();
 export async function loadCandidatosFromCSV() {
     console.log("Loading Candidatos from CSV...");
     const data = await d3.csv("candidatos2025Export.csv");
-    console.log("CSV data loaded:", data);
     return data.map(row => ({
         apellido: row.apellido,
         nombre: row.nombre,
@@ -52,7 +50,6 @@ export var queAlineacion = d3.rollup(
     (d) => d.partido
   )
 
-  console.log("Alineaciones:", queAlineacion);
 
 // Datos de los partidos políticos
 export const partidos = [
@@ -378,6 +375,16 @@ export const partidos = [
         ],
         "porcentaje": 1,
         "locked": false
+    },
+    // Agregar al final el partido de voto en blanco
+    {
+        "partido": "EN BLANCO / ANULADOS",
+        "partidoOrig": "EN BLANCO / ANULADOS",
+        "alineacion": "Voto en blanco",
+        "candidatos": ["-"],
+        "porcentaje": 1,
+        "locked": false,
+        "color": "#bbb"
     }
 ];
 
@@ -400,5 +407,6 @@ export const partidoIds = {
     "p14": "SEAMOS LIBRES",
     "p15": "BUENOS AIRES PRIMERO",
     "p16": "CONFLUENCIA",
-    "p17": "FRENTE PATRIOTA FEDERAL"
+    "p17": "FRENTE PATRIOTA FEDERAL",
+    "p18": "EN BLANCO / ANULADOS"
 };

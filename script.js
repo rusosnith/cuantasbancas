@@ -12,7 +12,8 @@ const CONFIG = {
 
 // 2. Variables globales y constantes
 let porcentajeMaximo = CONFIG.porcentajeMaximo;
-const initialValues = partidos.map(p => ({ porcentaje: p.porcentaje, locked: p.locked }));
+// Guardar snapshot profundo de los valores iniciales, incluyendo el partido en blanco
+const initialValues = partidos.map(p => ({ partido: p.partido, porcentaje: p.porcentaje, locked: p.locked }));
 
 // 3. Utilidades generales (colores, helpers, etc)
 // 4. Funciones de manipulación de URL y compartir
@@ -165,9 +166,9 @@ function createSliders() {
     const slidersContainer = d3.select("#sliders");
     const containers = slidersContainer.selectAll(".slider-container")
         .data(partidos)
-        .enter()
-        .append("div")
+        .join("div")
         .attr("class", "slider-container");
+
     const labelContainers = containers.append("div")
         .attr("class", "slider-label");
     labelContainers.append("span")
@@ -178,7 +179,10 @@ function createSliders() {
         .style("color", d => colorPartidos(d.alineacion))
         .text(d => d.candidatos[0])
 
-    containers.append("input")
+        const restContainer = containers.append("div")
+        .attr("class", "slider-rest");
+
+        restContainer.append("input")
         .attr("type", "range")
         .attr("class", "slider")
         .attr("min", 0)
@@ -202,7 +206,7 @@ function createSliders() {
                 this.value = oldValue;
             }
         });
-    containers.append("span")
+        restContainer.append("span")
         .attr("class", "lock-icon")
         .attr("id", (d, i) => `lock-${i}`)
         .html('<i class="fa-solid fa-lock"></i>')
@@ -210,10 +214,12 @@ function createSliders() {
             const index = partidos.findIndex(p => p.partido === d.partido);
             toggleLock(index);
         });
-    containers.append("div")
+        restContainer.append("div")
         .attr("class", "value-display")
         .attr("id", (d, i) => `value-${i}`)
         .text(d => d.porcentaje + "%");
+
+        
     partidos.forEach((partido, index) => {
         updateLockIcon(index);
         updateSliderColor(index, partido.color, partido.porcentaje);
@@ -288,6 +294,7 @@ function toggleLock(index) {
 
 // 7. Funciones de inicialización y reset
 function resetValues() {
+    // Restablecer todos los partidos a los valores originales del dataset
     partidos.forEach((partido) => {
         const inicial = initialValues.find(iv => iv.partido === partido.partido);
         if (inicial) {
@@ -304,7 +311,7 @@ function resetValues() {
     });
     partidos.forEach((partido, index) => {
         updateLockIcon(index);
-        updateSliderColor(index, partido.color, partido.porcentaje);
+        updateSliderColor(index, colorPartidos(partido.alineacion) || partido.color || "#bbb", partido.porcentaje);
     });
     updatePercentages();
     actualizarBancas();
@@ -355,9 +362,7 @@ function actualizarBancas() {
         d3.select("#bancas-resultado").html("");
     }
 
-    console.log("legislaturaCABA", legislaturaCaba2025)
 
-    console.log("resultado", resultado)
     var bancasTotales = d3
         .rollups(
             legislaturaCaba2025,
@@ -392,7 +397,6 @@ function actualizarBancas() {
         )
         .map((d) => d[1])
 
-    console.log("bancasTotales",bancasTotales);
 
     createVisualization(bancasTotales);
 }
@@ -403,18 +407,18 @@ function init() {
         const modal = document.getElementById("bancas-modal");
         if (modal) modal.style.display = "none";
     }
-    console.log("Initializing application...");
+    
     createSliders();
-    console.log("Sliders created.");
+    
     d3.select("#resetButton").on("click", resetValues);
-    console.log("Reset button handler attached.");
+    
     d3.select("#totalBancas").on("input", actualizarBancas);
     d3.select("#umbralPorcentual").on("input", actualizarBancas);
-    console.log("Input handlers for configuration attached.");
+    
     updatePercentages();
-    console.log("Percentages updated.");
+    
     actualizarBancas();
-    console.log("Initial seat distribution calculated.");
+    
     cargarDatosDesdeURL();
     actualizarEnlacesDeCompartir();
 }

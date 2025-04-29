@@ -49,7 +49,6 @@ function processData(data) {
 
 // Función unificada para crear y actualizar la visualización
 export function createVisualization(currentData) {
-    console.log("Datos:", currentData);
     // Preprocesar los datos
     const processedData = processData(currentData);
     // Ordenar los bloques según el dominio explícito

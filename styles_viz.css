@@ -1,7 +1,7 @@
 #bancas-visualization-container .containerViz {
     display: flex;
     align-items: flex-end;
-    height: 390px;
+    height: 450px;
     gap: 4px;
     margin-top: 10px;
     justify-content: center;
@@ -126,4 +126,36 @@
 }
 #bancas-visualization-container .banca-actual-top {
     margin-top: 3px;
+}
+
+@media (max-width: 600px) {
+  #bancas-visualization-container .containerViz {
+    display: flex;
+    flex-direction: row;
+    overflow-x: auto;
+    overflow-y: hidden;
+    width: 100%;
+    height: 406px;
+    -webkit-overflow-scrolling: touch;
+    padding: 0 10px; /* Agregar padding horizontal */
+    box-sizing: border-box; /* Asegurar que el padding no afecte el ancho total */
+  }
+  #bancas-visualization-container .bloque {
+    min-width: 70px;
+    max-width: 70px;
+    flex: 0 0 70px;
+  }
+  #bancas-visualization-container .banca {
+    font-size: 9px;
+    width: 100%;
+    min-width: 0; /* Permitir que las bancas se ajusten al ancho del bloque */
+  }
+
+  #bancas-visualization-container .label span:first-of-type{
+    font-size: 12px;
+  }
+  #bancas-visualization-container .label {
+    height: 74px;
+    font-size: 11px;
+  }
 }
