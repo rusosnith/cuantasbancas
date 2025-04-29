@@ -3,7 +3,7 @@
     display: flex;
     align-items: flex-end;
     height: 600px;
-    gap: 10px;
+    gap: 0px;
     margin-top: 30px;
     justify-content: center;
     max-width: 100%; /* Limita el ancho máximo del contenedor */

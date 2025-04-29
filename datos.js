@@ -38,7 +38,8 @@ export async function loadCandidatosFromCSV() {
         apellido: row.apellido,
         nombre: row.nombre,
         partido: row.partidoCorto,
-        alineacion: row.Alineacion,
+        alineacion: row.alineacion,
+        orden: +row.orden
     }));
 }
 
@@ -46,10 +47,12 @@ export async function loadCandidatosFromCSV() {
 export const candidatos2025 = await loadCandidatosFromCSV();
 
 export var queAlineacion = d3.rollup(
-    legislaturaCaba2025,
-    (v) => v[0].Alineacion,
-    (d) => d.partidoCorto
+    candidatos2025,
+    (v) => v[0].alineacion,
+    (d) => d.partido
   )
+
+  console.log("Alineaciones:", queAlineacion);
 
 // Datos de los partidos políticos
 export const partidos = [

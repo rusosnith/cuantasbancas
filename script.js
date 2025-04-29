@@ -170,6 +170,7 @@ function createSliders() {
         .attr("class", "candidato-label")
         .style("color", d => colorPartidos(d.alineacion))
         .text(d => d.candidatos[0])
+
     containers.append("input")
         .attr("type", "range")
         .attr("class", "slider")
@@ -320,54 +321,66 @@ function actualizarBancas() {
         }
     );
     resultado.sort((a, b) => b.bancas - a.bancas);
+
+    // Actualizar los tags de bancas usando enter/update/exit
     const bancasContainer = d3.select("#bancas-resultado");
-    bancasContainer.html("");
-    bancasContainer.selectAll(".banca-tag")
-        .data(resultado.filter(d => d.bancas > 0))
-        .join("div")
-        .attr("class", "banca-tag")
+    const bancasTags = bancasContainer.selectAll(".banca-tag")
+        .data(resultado.filter(d => d.bancas > 0), d => d.partido); // usando partido como key
+
+    // Enter: nuevos tags
+    const bancasTagsEnter = bancasTags.enter()
+        .append("div")
+        .attr("class", "banca-tag");
+
+    // Update + Enter: aplicar estilos y contenido a todos
+    bancasTags.merge(bancasTagsEnter)
         .style("background-color", d => {
             const partido = partidos.find(p => p.partido === d.partido);
             return partido ? colorPartidos(partido.alineacion) : "#999";
         })
-        .html(d => "<b>" + d.partido + ":</b>"+ d.bancas +" bancas");
+        .html(d => "<b>" + d.partido + ":</b> " + d.bancas + " bancas");
 
-console.log("legislaturaCaba2025",legislaturaCaba2025);
-console.log("resutltado",resultado);
+    // Exit: remover tags que ya no existen
+    bancasTags.exit().remove();
 
+    console.log("legislaturaCABA", legislaturaCaba2025)
+
+    console.log("resultado", resultado)
     var bancasTotales = d3
-                .rollups(
-                    legislaturaCaba2025,
-                    (v) => {
+        .rollups(
+            legislaturaCaba2025,
+            (v) => {
+            return {
+                bloque: v[0].alineacion,
+                actuales: v.filter((d) => !d.renueva).length,
+                enJuego: v.filter((d) => d.renueva).length,
+                diputadosActuales: v
+                .filter((d) => !d.renueva)
+                .map((d) => {
                     return {
-                        bloque: v[0].alineacion,
-                        actuales: v.filter((d) => !d.Renueva2025).length,
-                        enJuego: v.filter((d) => d.Renueva2025).length,
-                        diputadosActuales: v
-                        .filter((d) => !d.Renueva2025)
-                        .map((d) => {
-                            return {
-                            apellido: d.apellido,
-                            nombre: d.nombre,
-                            partido: d.partido
-                            };
-                        }),
-                        ganadas: resultado
-                        .filter((d) => queAlineacion.get(d.partido) == v[0].alineacion)
-                        .map((d) => {
-                            return {
-                            partido: d.partido,
-                            bancas: d.bancas,
-                            diputados: candidatos2025
-                                .filter((e) => e.partidoCorto === d.partido)
-                                .filter((e) => +e.orden <= d.bancas)
-                            };
-                        })
+                    apellido: d.apellido,
+                    nombre: d.nombre,
+                    partido: d.partido
                     };
-                    },
-                    (d) => d.sector
-                )
-                .map((d) => d[1])
+                }),
+                ganadas: resultado
+                .filter((g) => queAlineacion.get(g.partido) == v[0].alineacion)
+                .map((d) => {
+                    return {
+                    partido: d.partido,
+                    bancas: d.bancas,
+                    diputados: candidatos2025
+                        .filter((e) => e.partido === d.partido)
+                        .filter((e) => e.orden <= d.bancas)
+                    };
+                })
+            };
+            },
+            (d) => d.alineacion
+        )
+        .map((d) => d[1])
+
+    console.log("bancasTotales",bancasTotales);
 
     createVisualization(bancasTotales);
 }
