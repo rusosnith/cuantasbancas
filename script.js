@@ -5,23 +5,19 @@ import { createVisualization } from './script_viz.js';
 
 // 2. Variables globales y constantes
 let porcentajeMaximo = 40;
-console.log("Initial configuration: porcentajeMaximo =", porcentajeMaximo);
 const initialValues = partidos.map(p => ({ porcentaje: p.porcentaje, locked: p.locked }));
 
 // 3. Utilidades generales (colores, helpers, etc)
-
 // 4. Funciones de manipulación de URL y compartir
 function actualizarURL() {
-    console.log("Updating URL with current percentages...");
     const params = new URLSearchParams();
-    partidos.forEach((partido, index) => {
+    partidos.map((partido) => {
         const id = Object.keys(partidoIds).find(key => partidoIds[key] === partido.partido);
         if (id) {
             params.set(id, partido.porcentaje.toFixed(1));
         }
     });
     history.replaceState(null, "", `?${params.toString()}`);
-    console.log("URL updated:", window.location.href);
 }
 
 function actualizarEnlacesDeCompartir() {
@@ -55,14 +51,14 @@ actualizarURL = (function(originalActualizarURL) {
         actualizarEnlacesDeCompartir();
     };
 })(actualizarURL);
-
 function cargarDatosDesdeURL() {
     const params = new URLSearchParams(window.location.search);
-    params.forEach((value, key) => {
-        const partido = partidos.find(p => partidoIds[key] === p.partido);
-        if (partido) {
-            partido.porcentaje = parseFloat(value);
+    partidos.map(p => {
+        const key = Object.keys(partidoIds).find(k => partidoIds[k] === p.partido);
+        if (key && params.has(key)) {
+            p.porcentaje = +params.get(key);
         }
+        return p;
     });
 }
 
@@ -336,35 +332,35 @@ function actualizarBancas() {
         })
         .html(d => "<b>" + d.partido + ":</b>"+ d.bancas +" bancas");
 
+console.log("legislaturaCaba2025",legislaturaCaba2025);
+console.log("resutltado",resultado);
 
-        console.log("legislaturaCaba", legislaturaCaba2025)
     var bancasTotales = d3
                 .rollups(
                     legislaturaCaba2025,
                     (v) => {
                     return {
-                        bloque: v[0].sector,
+                        bloque: v[0].alineacion,
                         actuales: v.filter((d) => !d.Renueva2025).length,
                         enJuego: v.filter((d) => d.Renueva2025).length,
                         diputadosActuales: v
                         .filter((d) => !d.Renueva2025)
                         .map((d) => {
                             return {
-                            apellido: d.Apellido,
-                            nombre: d.Nombre,
-                            partido: d.Bloque
+                            apellido: d.apellido,
+                            nombre: d.nombre,
+                            partido: d.partido
                             };
                         }),
                         ganadas: resultado
-                        .filter((d) => queAlineacion.get(d.nombre) == v[0].sector)
+                        .filter((d) => queAlineacion.get(d.partido) == v[0].alineacion)
                         .map((d) => {
                             return {
-                            partido: d.nombre,
+                            partido: d.partido,
                             bancas: d.bancas,
                             diputados: candidatos2025
-                                .filter((d) => d.estatus == "titular")
-                                .filter((e) => e.partidoCorto === d.nombre)
-                                .filter((e) => +e["N° DE ORDEN"] <= d.bancas)
+                                .filter((e) => e.partidoCorto === d.partido)
+                                .filter((e) => +e.orden <= d.bancas)
                             };
                         })
                     };

@@ -39,7 +39,6 @@ function processData(data) {
 
 // Crear la visualización inicial
 export function createVisualization(currentData) {
-    console.log("datos iniciales", currentData);
     // Preprocesar los datos
     const processedData = processData(currentData);
     const container = d3.select("#chart-container");
