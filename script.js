@@ -159,6 +159,36 @@ function redistributeChange(change) {
     }
 }
 
+// Función para renderizar la referencia de alineaciones en cualquier contenedor
+function renderReferenciaAlineaciones(contenedorSelector) {
+    const referenciaAlineaciones = [
+        "Izquierda",
+        "Peronismo",
+        "Ex oficialistas",
+        "Vecinal",
+        "Pro",
+        "Libertarios"
+    ];
+    const contenedor = d3.select(contenedorSelector);
+    // Elimina referencias previas si existen
+    contenedor.selectAll(".referencia-container").remove();
+    const referenciaContainer = contenedor.append("div")
+        .attr("class", "referencia-container");
+    referenciaContainer.selectAll(".referencia-item")
+        .data(referenciaAlineaciones)
+        .join("div")
+        .attr("class", "referencia-item")
+        .html(d => `
+            <div style="background-color: ${colorPartidos(d)};"></div>
+            <span>${d}</span>
+        `);
+}
+
+// Renderizar la referencia de alineaciones debajo del gráfico apilado
+function renderReferenciaAlineacionesViz() {
+    renderReferenciaAlineaciones("#referencia-alineaciones-viz");
+}
+
 // 6. Funciones de UI (sliders, visualización, actualización de valores)
 function createSliders() {
     console.log("Creating sliders...");
@@ -224,23 +254,9 @@ function createSliders() {
         updateLockIcon(index);
         updateSliderColor(index, partido.color, partido.porcentaje);
     });
-    const referenciaContainer = d3.select("#sliders").append("div")
-        .attr("class", "referencia-container");
-    referenciaContainer.selectAll(".referencia-item")
-        .data([
-            "Izquierda",
-            "Peronismo",
-            "Ex oficialistas",
-            "Vecinal",
-            "Pro",
-            "Libertarios"
-        ])
-        .join("div")
-        .attr("class", "referencia-item")
-        .html(d => `
-            <div style="background-color: ${colorPartidos(d)};"></div>
-            <span>${d}</span>
-        `);
+
+    // Usar la función unificada para la referencia de alineaciones SOLO en el contenedor de sliders
+    renderReferenciaAlineaciones("#referencia-alineaciones-sliders");
 }
 
 function updateLockIcon(index) {
@@ -419,9 +435,16 @@ function init() {
 
     actualizarBancas();
 
+    renderReferenciaAlineacionesViz();
+
     cargarDatosDesdeURL();
     actualizarEnlacesDeCompartir();
 }
+
+// Llamar también a la función para el contenedor de la visualización (abajo del gráfico)
+document.addEventListener("DOMContentLoaded", function() {
+    renderReferenciaAlineaciones("#bancas-visualization-container");
+});
 
 init();
 console.log("Application initialized.");
