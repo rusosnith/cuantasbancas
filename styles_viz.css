@@ -1,7 +1,8 @@
 #bancas-visualization-container .containerViz {
     display: flex;
     align-items: flex-end;
-    height: 450px;
+    min-height: 430px;
+    height: auto;
     gap: 4px;
     margin-top: 10px;
     justify-content: center;
