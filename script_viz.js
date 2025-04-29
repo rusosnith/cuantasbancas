@@ -1,5 +1,15 @@
 import { colorPartidos } from './datos.js';
 
+// Dominio explícito de alineaciones para el orden de los stacks
+export const ORDEN_ALINEACIONES = [
+    "Izquierda",
+    "Peronismo",
+    "Ex oficialistas",
+    "Vecinal",
+    "Pro",
+    "Libertarios"
+];
+
 // Función para preprocesar los datos
 function processData(data) {
     return data.map(bloque => {
@@ -40,9 +50,10 @@ function processData(data) {
 // Función unificada para crear y actualizar la visualización
 export function createVisualization(currentData) {
     console.log("Datos:", currentData);
-    
     // Preprocesar los datos
     const processedData = processData(currentData);
+    // Ordenar los bloques según el dominio explícito
+    processedData.sort((a, b) => ORDEN_ALINEACIONES.indexOf(a.bloque) - ORDEN_ALINEACIONES.indexOf(b.bloque));
     const container = d3.select("#chart-container");
 
     // Actualizar los bloques
@@ -71,19 +82,30 @@ export function createVisualization(currentData) {
         const bloque = d3.select(this);
         const stack = bloque.select(".stack");
 
+        // Identificar índices de las bancas actuales
+        const diputados = d.diputados;
+        let lastActualIdx = -1;
+        for (let i = 0; i < diputados.length; i++) {
+            if (diputados[i].tipo === "actual") lastActualIdx = i;
+        }
+
         // Update bancas
         const bancas = stack.selectAll(".banca")
-            .data(d.diputados);
+            .data(diputados);
 
         // Enter: nuevas bancas
         bancas.enter()
             .append("div")
-            .attr("class", d => "banca " + d.tipo)
-            .merge(bancas) // merge con update
-            .style("background-color", d => d.color)
-            .style("opacity", d => d.opacity)
-            .text(d => d.dataDiputado.apellido)
-            .attr("title", d => `${d.dataDiputado.apellido}, ${d.dataDiputado.nombre} - ${d.dataDiputado.partido}`);
+            .attr("class", (b, i) => {
+                let base = "banca " + b.tipo;
+                if (b.tipo === "actual" && i === lastActualIdx) base += " banca-actual-top";
+                return base;
+            })
+            .merge(bancas)
+            .style("background-color", b => b.color)
+            .style("opacity", b => b.opacity)
+            .text(b => b.dataDiputado.apellido)
+            .attr("title", b => `${b.dataDiputado.apellido}, ${b.dataDiputado.nombre} - ${b.dataDiputado.partido}`);
 
         // Exit: eliminar bancas que ya no existen
         bancas.exit().remove();

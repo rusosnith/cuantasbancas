@@ -381,7 +381,6 @@ export const partidos = [
     }
 ];
 
-console.log("Partidos data:", partidos);
 
 // Diccionario de IDs y partidos inventados
 export const partidoIds = {
