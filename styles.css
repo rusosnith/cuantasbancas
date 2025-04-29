@@ -1,6 +1,7 @@
 /* Fondo gris para toda la página */
 body {
-    background-color: #f5f5f5; /* Fondo gris claro */
+    background-color: #f5f5f5;
+    /* Fondo gris claro */
     font-family: Arial, sans-serif;
     margin: 0;
     padding: 0;
@@ -13,12 +14,12 @@ body {
 }
 
 .container p {
-        text-align: center;
-        width: 80%;
-        margin: auto;
-    }
+    text-align: center;
+    width: 80%;
+    margin: auto;
+}
 
-.modal{
+.modal {
     background-color: white;
     border-radius: 8px;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
@@ -31,10 +32,11 @@ h1 {
     margin-bottom: 5px;
 }
 
-h3{
-    margin:5px 1px;
+h3 {
+    margin: 5px 1px;
     text-align: center;
 }
+
 .bancas-container {
     display: flex;
     flex-wrap: wrap;
@@ -44,6 +46,7 @@ h3{
     background-color: #f8f8f8;
     border-radius: 5px;
 }
+
 .banca-tag {
     padding: 5px 10px;
     border-radius: 15px;
@@ -69,7 +72,7 @@ h3{
     font-weight: bold;
     display: flex;
     font-size: 0.85rem;
-    overflow:hidden;
+    overflow: hidden;
     flex-flow: column;
 }
 
@@ -80,28 +83,34 @@ h3{
     gap: 4px;
 }
 
-.candidato-label{
-    font-size:0.7rem;
+.candidato-label {
+    font-size: 0.7rem;
     font-weight: normal;
-    opacity:0.8
+    opacity: 0.8
 }
 
 /* Ajustar el icono de candado para que esté junto al porcentaje y siempre visible */
 .lock-icon {
-    margin-left: 10px; /* Espaciado después del porcentaje */
-    visibility: visible; /* Siempre visible */
+    margin-left: 10px;
+    /* Espaciado después del porcentaje */
+    visibility: visible;
+    /* Siempre visible */
     cursor: pointer;
-    color: #555; /* Gris oscuro */
-    transition: color 0.3s ease; /* Transición para hover */
+    color: #555;
+    /* Gris oscuro */
+    transition: color 0.3s ease;
+    /* Transición para hover */
 }
 
 .lock-icon:hover {
-    color: #000; /* Cambiar a negro al pasar el mouse */
+    color: #000;
+    /* Cambiar a negro al pasar el mouse */
 }
 
 .lock-icon i {
     font-size: 14px;
 }
+
 .slider {
     flex-grow: 1;
     margin: 0 1px;
@@ -111,6 +120,7 @@ h3{
     border-radius: 5px;
     background: #e0e0e0;
 }
+
 .slider::-webkit-slider-thumb {
     -webkit-appearance: none;
     width: 18px;
@@ -119,8 +129,9 @@ h3{
     cursor: pointer;
     background: white;
     border: 2px solid #666;
-    box-shadow: 0 0 2px rgba(0,0,0,0.4);
+    box-shadow: 0 0 2px rgba(0, 0, 0, 0.4);
 }
+
 .slider::-moz-range-thumb {
     width: 18px;
     height: 18px;
@@ -128,13 +139,15 @@ h3{
     cursor: pointer;
     background: white;
     border: 2px solid #666;
-    box-shadow: 0 0 2px rgba(0,0,0,0.4);
+    box-shadow: 0 0 2px rgba(0, 0, 0, 0.4);
 }
+
 .value-display {
     width: 53px;
     text-align: right;
     font-weight: bold;
 }
+
 .total-container {
     margin-top: 20px;
     padding: 10px;
@@ -143,6 +156,7 @@ h3{
     text-align: center;
     font-weight: bold;
 }
+
 .bancas-config {
     margin: 20px 0;
     padding: 15px;
@@ -152,15 +166,18 @@ h3{
     align-items: center;
     gap: 15px;
 }
+
 .bancas-config label {
     font-weight: bold;
 }
+
 .bancas-config input {
     width: 60px;
     padding: 5px;
     border: 1px solid #ccc;
     border-radius: 4px;
 }
+
 #resetButton {
     display: block;
     margin: 20px auto;
@@ -171,6 +188,7 @@ h3{
     border-radius: 5px;
     cursor: pointer;
 }
+
 #resetButton:hover {
     background-color: #45a049;
 }
@@ -266,6 +284,7 @@ footer .credits i {
 .share-button i {
     margin-right: 8px;
 }
+
 .referencia-bancas {
     margin-top: 6px;
     display: flex;
@@ -274,6 +293,7 @@ footer .credits i {
     gap: 7px;
     width: 100%;
 }
+
 .referencia-bancas .banca {
     background: #d3d3d3;
     color: #444;
@@ -289,23 +309,26 @@ footer .credits i {
     text-transform: uppercase;
 
 }
+
 .referencia-bancas .banca.renueva {
     background: #888;
     color: #fff;
 }
+
 .referencia-bancas-label {
     font-size: 0.9em;
 }
+
 @media (max-width: 600px) {
     .modal {
         margin: 10px 7px;
         padding: 11px 0;
     }
-    
+
     .modal-header {
         padding: 0 11px;
     }
-    
+
     .referencia-container {
         padding: 0 11px;
     }
@@ -321,10 +344,11 @@ footer .credits i {
         max-width: 100%;
         margin-bottom: 4px;
         flex-flow: row;
-        gap:2px;
-  
+        gap: 2px;
+
     }
-    .slider-label span{
+
+    .slider-label span {
         font-size: 0.8rem;
         font-weight: normal;
         overflow: hidden;
@@ -337,12 +361,12 @@ footer .credits i {
 
     .slider-rest {
         width: 100%;
-        gap:0px;
+        gap: 0px;
     }
 
     .slider-rest .slider {
         flex-grow: 1;
     }
 
-   
+
 }

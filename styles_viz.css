@@ -5,26 +5,36 @@
     gap: 4px;
     margin-top: 10px;
     justify-content: center;
-    max-width: 100%; /* Limita el ancho máximo del contenedor */
-    overflow: auto; /* Evita que los elementos hijos desborden el contenedor */
+    max-width: 100%;
+    /* Limita el ancho máximo del contenedor */
+    overflow: auto;
+    /* Evita que los elementos hijos desborden el contenedor */
 }
+
 #bancas-visualization-container .bloque {
     display: flex;
     flex-direction: column;
     align-items: center;
-    flex: 1; /* Distribuir equitativamente el ancho */
+    flex: 1;
+    /* Distribuir equitativamente el ancho */
 }
+
 #bancas-visualization-container .stack {
     display: flex;
     flex-direction: column-reverse;
     align-items: center;
     gap: 2px;
-    width: 100%; /* Ocupa el ancho total del bloque */
-    max-width: 100%; /* Limita el ancho máximo del stack */
-    overflow: hidden; /* Evita que los elementos hijos desborden el stack */
+    width: 100%;
+    /* Ocupa el ancho total del bloque */
+    max-width: 100%;
+    /* Limita el ancho máximo del stack */
+    overflow: hidden;
+    /* Evita que los elementos hijos desborden el stack */
 }
+
 #bancas-visualization-container .banca {
-    width: 120px; /* Ancho fijo para evitar que se expanda */
+    width: 120px;
+    /* Ancho fijo para evitar que se expanda */
     height: 16px;
     border-radius: 4px;
     margin: 0px;
@@ -36,28 +46,35 @@
     white-space: nowrap;
     padding: 0 8px;
     box-sizing: border-box;
-    max-width: 120px; /* Limita el ancho máximo */
-    flex: 0 0 auto; /* Evita que el elemento crezca o se contraiga */
-    flex-shrink: 0; /* Evita que el elemento se expanda más allá de su contenedor */
-    pointer-events: none; /* Desactiva eventos del mouse */
-    user-select: none; /* Desactiva selección de texto */
-    -ms-user-select: none; /* Desactiva selección de texto en IE */
-    -webkit-user-select: none; /* Desactiva selección de texto en Safari */
+    max-width: 120px;
+    /* Limita el ancho máximo */
+    flex: 0 0 auto;
+    /* Evita que el elemento crezca o se contraiga */
+    flex-shrink: 0;
+    /* Evita que el elemento se expanda más allá de su contenedor */
+    pointer-events: none;
+    /* Desactiva eventos del mouse */
+    user-select: none;
+    /* Desactiva selección de texto */
+    -ms-user-select: none;
+    /* Desactiva selección de texto en IE */
+    -webkit-user-select: none;
+    /* Desactiva selección de texto en Safari */
     font-weight: bold;
 
 
 }
 
-#bancas-visualization-container .banca.ganada{
+#bancas-visualization-container .banca.ganada {
     color: white;
     text-shadow: 0px 0px 2px rgba(0, 0, 0, 0.7);
 }
 
 
-#bancas-visualization-container .banca.actual{
-    color:#000;
+#bancas-visualization-container .banca.actual {
+    color: #000;
     opacity: 0.5;
-    
+
 }
 
 #bancas-visualization-container .label {
@@ -84,32 +101,38 @@
     flex-wrap: wrap;
     gap: 20px;
 }
+
 #bancas-visualization-container .legend-item {
     display: flex;
     align-items: center;
     margin-right: 15px;
 }
+
 #bancas-visualization-container .legend-color {
     width: 20px;
     height: 15px;
     border-radius: 7px;
     margin-right: 5px;
 }
+
 #bancas-visualization-container h2 {
     text-align: center;
     margin-bottom: 30px;
 }
+
 #bancas-visualization-container .tipo-banca {
     display: flex;
     align-items: center;
     margin-right: 15px;
 }
+
 #bancas-visualization-container .tipo-color {
     width: 20px;
     height: 15px;
     border-radius: 7px;
     margin-right: 5px;
 }
+
 #bancas-visualization-container button {
     display: block;
     margin: 20px auto;
@@ -121,41 +144,49 @@
     cursor: pointer;
     font-size: 16px;
 }
+
 #bancas-visualization-container button:hover {
     background-color: #3a76d8;
 }
+
 #bancas-visualization-container .banca-actual-top {
     margin-top: 3px;
 }
 
 @media (max-width: 600px) {
-  #bancas-visualization-container .containerViz {
-    display: flex;
-    flex-direction: row;
-    overflow-x: auto;
-    overflow-y: hidden;
-    width: 100%;
-    height: 406px;
-    -webkit-overflow-scrolling: touch;
-    padding: 0 10px; /* Agregar padding horizontal */
-    box-sizing: border-box; /* Asegurar que el padding no afecte el ancho total */
-  }
-  #bancas-visualization-container .bloque {
-    min-width: 70px;
-    max-width: 70px;
-    flex: 0 0 70px;
-  }
-  #bancas-visualization-container .banca {
-    font-size: 9px;
-    width: 100%;
-    min-width: 0; /* Permitir que las bancas se ajusten al ancho del bloque */
-  }
+    #bancas-visualization-container .containerViz {
+        display: flex;
+        flex-direction: row;
+        overflow-x: auto;
+        overflow-y: hidden;
+        width: 100%;
+        height: 406px;
+        -webkit-overflow-scrolling: touch;
+        padding: 0 10px;
+        /* Agregar padding horizontal */
+        box-sizing: border-box;
+        /* Asegurar que el padding no afecte el ancho total */
+    }
 
-  #bancas-visualization-container .label span:first-of-type{
-    font-size: 12px;
-  }
-  #bancas-visualization-container .label {
-    height: 74px;
-    font-size: 11px;
-  }
+    #bancas-visualization-container .bloque {
+        min-width: 70px;
+        max-width: 70px;
+        flex: 0 0 70px;
+    }
+
+    #bancas-visualization-container .banca {
+        font-size: 9px;
+        width: 100%;
+        min-width: 0;
+        /* Permitir que las bancas se ajusten al ancho del bloque */
+    }
+
+    #bancas-visualization-container .label span:first-of-type {
+        font-size: 12px;
+    }
+
+    #bancas-visualization-container .label {
+        height: 74px;
+        font-size: 11px;
+    }
 }

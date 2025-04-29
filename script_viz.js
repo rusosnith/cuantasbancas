@@ -77,7 +77,7 @@ export function createVisualization(currentData) {
     const bloquesMerge = bloques.merge(bloquesEnter);
 
     // Actualizar las bancas en cada bloque
-    bloquesMerge.each(function(d) {
+    bloquesMerge.each(function (d) {
         const bloque = d3.select(this);
         const stack = bloque.select(".stack");
 

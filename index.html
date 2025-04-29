@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -11,12 +12,13 @@
     <script type="module" src="script.js"></script>
     <script type="module" src="script_viz.js"></script>
 </head>
+
 <body>
     <div class="container">
         <h1>¿Cuántas bancas?</h1>
         <p>Simulador de distribución de bancas de la legislatura porteña 2025</p>
-        
-        
+
+
 
         <!-- Modal para el grafico apilado -->
         <div class="modal" id="bancas-visualization-container">
@@ -61,7 +63,7 @@
             </div>
         </div>
 
-        
+
         <!-- Modal para los resultados de bancas -->
         <div class="modal" id="bancas-modal">
             <div class="modal-header">
@@ -86,21 +88,21 @@
                 <label for="totalBancas">Total de bancas:</label>
                 <input type="number" id="totalBancas" value="30" min="1" max="100">
             </div>
-           
+
             <button id="resetButton">Restablecer valores</button>
             <div class="config-item">
-                <label for="umbralPorcentual">Umbral  (%):</label>
+                <label for="umbralPorcentual">Umbral (%):</label>
                 <input type="number" id="umbralPorcentual" value="0" min="0" max="10" step="0.1">
             </div>
         </div>
 
         <div class="share-buttons">
-            <a href="https://twitter.com/intent/tweet?text=Descubre%20cuántas%20bancas%20puede%20obtener%20cada%20partido%20en%20https://www.visualizando.ar" 
-               target="_blank" class="share-button twitter">
+            <a href="https://twitter.com/intent/tweet?text=Descubre%20cuántas%20bancas%20puede%20obtener%20cada%20partido%20en%20https://www.visualizando.ar"
+                target="_blank" class="share-button twitter">
                 <i class="fa-brands fa-twitter"></i> Compartir en Twitter
             </a>
-            <a href="https://api.whatsapp.com/send?text=Descubre%20cuántas%20bancas%20puede%20obtener%20cada%20partido%20en%20https://www.visualizando.ar" 
-               target="_blank" class="share-button whatsapp">
+            <a href="https://api.whatsapp.com/send?text=Descubre%20cuántas%20bancas%20puede%20obtener%20cada%20partido%20en%20https://www.visualizando.ar"
+                target="_blank" class="share-button whatsapp">
                 <i class="fa-brands fa-whatsapp"></i> Compartir en WhatsApp
             </a>
             <button class="share-button copy" onclick="copiarAlPortapapeles()">
@@ -118,18 +120,20 @@
             <p>Creado por Andres Snitcofsky</p>
             <a href="https://www.visualizando.ar" target="_blank"><i class="fa-solid fa-globe"></i> visualizando.ar</a>
             <a href="https://twitter.com/rusosnith" target="_blank"><i class="fa-brands fa-twitter"></i> @rusosnith</a>
-            <a href="https://github.com/rusosnith/cuantasbancas" target="_blank"><i class="fa-brands fa-github"></i> GitHub</a>
+            <a href="https://github.com/rusosnith/cuantasbancas" target="_blank"><i class="fa-brands fa-github"></i>
+                GitHub</a>
         </div>
         <!-- Google tag (gtag.js) -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-3YPHF99NYB"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
+        <script async src="https://www.googletagmanager.com/gtag/js?id=G-3YPHF99NYB"></script>
+        <script>
+            window.dataLayer = window.dataLayer || [];
+            function gtag() { dataLayer.push(arguments); }
+            gtag('js', new Date());
 
-  gtag('config', 'G-3YPHF99NYB');
-</script>
+            gtag('config', 'G-3YPHF99NYB');
+        </script>
 
     </footer>
 </body>
+
 </html>

@@ -53,8 +53,8 @@ function copiarAlPortapapeles() {
 }
 window.copiarAlPortapapeles = copiarAlPortapapeles;
 
-actualizarURL = (function(originalActualizarURL) {
-    return function() {
+actualizarURL = (function (originalActualizarURL) {
+    return function () {
         originalActualizarURL();
         actualizarEnlacesDeCompartir();
     };
@@ -89,7 +89,7 @@ function calcularDhondt(
     const partidosConVotos = partidos.map((p) => ({
         ...p,
         votos: modo === "porcentajes"
-            ? Math.round((p.porcentaje / 100) * (totalVotos ?? (() => { throw new Error("Falta totalVotos") })()) )
+            ? Math.round((p.porcentaje / 100) * (totalVotos ?? (() => { throw new Error("Falta totalVotos") })()))
             : p.votos
     }));
     const totalVotosEmitidos = partidosConVotos.reduce((sum, p) => sum + p.votos, 0);
@@ -179,10 +179,10 @@ function createSliders() {
         .style("color", d => colorPartidos(d.alineacion))
         .text(d => d.candidatos[0])
 
-        const restContainer = containers.append("div")
+    const restContainer = containers.append("div")
         .attr("class", "slider-rest");
 
-        restContainer.append("input")
+    restContainer.append("input")
         .attr("type", "range")
         .attr("class", "slider")
         .attr("min", 0)
@@ -190,7 +190,7 @@ function createSliders() {
         .attr("step", 0.1)
         .attr("value", d => d.porcentaje)
         .attr("id", (d, i) => `slider-${i}`)
-        .on("input", function(event, d, i) {
+        .on("input", function (event, d, i) {
             const index = partidos.findIndex(p => p.partido === d.partido);
             const newValue = parseFloat(this.value);
             const oldValue = partidos[index].porcentaje;
@@ -206,7 +206,7 @@ function createSliders() {
                 this.value = oldValue;
             }
         });
-        restContainer.append("span")
+    restContainer.append("span")
         .attr("class", "lock-icon")
         .attr("id", (d, i) => `lock-${i}`)
         .html('<i class="fa-solid fa-lock"></i>')
@@ -214,12 +214,12 @@ function createSliders() {
             const index = partidos.findIndex(p => p.partido === d.partido);
             toggleLock(index);
         });
-        restContainer.append("div")
+    restContainer.append("div")
         .attr("class", "value-display")
         .attr("id", (d, i) => `value-${i}`)
         .text(d => d.porcentaje + "%");
 
-        
+
     partidos.forEach((partido, index) => {
         updateLockIcon(index);
         updateSliderColor(index, partido.color, partido.porcentaje);
@@ -228,13 +228,13 @@ function createSliders() {
         .attr("class", "referencia-container");
     referenciaContainer.selectAll(".referencia-item")
         .data([
-                "Izquierda",
-                "Peronismo",
-                "Ex oficialistas",
-                "Vecinal",
-                "Pro",
-                "Libertarios"
-                ])
+            "Izquierda",
+            "Peronismo",
+            "Ex oficialistas",
+            "Vecinal",
+            "Pro",
+            "Libertarios"
+        ])
         .join("div")
         .attr("class", "referencia-item")
         .html(d => `
@@ -274,11 +274,11 @@ function updateSliderColor(index, color, porcentaje) {
 }
 
 function updatePercentages() {
-    d3.selectAll(".slider").each(function(d, i) {
+    d3.selectAll(".slider").each(function (d, i) {
         const index = i;
         this.value = partidos[index].porcentaje;
     });
-    d3.selectAll(".value-display").each(function(d, i) {
+    d3.selectAll(".value-display").each(function (d, i) {
         const index = i;
         this.textContent = partidos[index].porcentaje.toFixed(1) + "%";
     });
@@ -303,10 +303,10 @@ function resetValues() {
         }
     });
     history.replaceState(null, "", window.location.pathname);
-    d3.selectAll(".slider").each(function(d, i) {
+    d3.selectAll(".slider").each(function (d, i) {
         this.value = partidos[i].porcentaje;
     });
-    d3.selectAll(".value-display").each(function(d, i) {
+    d3.selectAll(".value-display").each(function (d, i) {
         this.textContent = partidos[i].porcentaje.toFixed(1) + "%";
     });
     partidos.forEach((partido, index) => {
@@ -367,31 +367,31 @@ function actualizarBancas() {
         .rollups(
             legislaturaCaba2025,
             (v) => {
-            return {
-                bloque: v[0].alineacion,
-                actuales: v.filter((d) => !d.renueva).length,
-                enJuego: v.filter((d) => d.renueva).length,
-                diputadosActuales: v
-                .filter((d) => !d.renueva)
-                .map((d) => {
-                    return {
-                    apellido: d.apellido,
-                    nombre: d.nombre,
-                    partido: d.partido
-                    };
-                }),
-                ganadas: resultado
-                .filter((g) => queAlineacion.get(g.partido) == v[0].alineacion)
-                .map((d) => {
-                    return {
-                    partido: d.partido,
-                    bancas: d.bancas,
-                    diputados: candidatos2025
-                        .filter((e) => e.partido === d.partido)
-                        .filter((e) => e.orden <= d.bancas)
-                    };
-                })
-            };
+                return {
+                    bloque: v[0].alineacion,
+                    actuales: v.filter((d) => !d.renueva).length,
+                    enJuego: v.filter((d) => d.renueva).length,
+                    diputadosActuales: v
+                        .filter((d) => !d.renueva)
+                        .map((d) => {
+                            return {
+                                apellido: d.apellido,
+                                nombre: d.nombre,
+                                partido: d.partido
+                            };
+                        }),
+                    ganadas: resultado
+                        .filter((g) => queAlineacion.get(g.partido) == v[0].alineacion)
+                        .map((d) => {
+                            return {
+                                partido: d.partido,
+                                bancas: d.bancas,
+                                diputados: candidatos2025
+                                    .filter((e) => e.partido === d.partido)
+                                    .filter((e) => e.orden <= d.bancas)
+                            };
+                        })
+                };
             },
             (d) => d.alineacion
         )
@@ -407,18 +407,18 @@ function init() {
         const modal = document.getElementById("bancas-modal");
         if (modal) modal.style.display = "none";
     }
-    
+
     createSliders();
-    
+
     d3.select("#resetButton").on("click", resetValues);
-    
+
     d3.select("#totalBancas").on("input", actualizarBancas);
     d3.select("#umbralPorcentual").on("input", actualizarBancas);
-    
+
     updatePercentages();
-    
+
     actualizarBancas();
-    
+
     cargarDatosDesdeURL();
     actualizarEnlacesDeCompartir();
 }
