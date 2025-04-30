@@ -161,7 +161,8 @@
         overflow-x: auto;
         overflow-y: hidden;
         width: 100%;
-        height: 406px;
+        min-height: 408px;
+        height: auto;
         -webkit-overflow-scrolling: touch;
         padding: 0 10px;
         /* Agregar padding horizontal */

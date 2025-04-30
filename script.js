@@ -51,7 +51,7 @@ function copiarAlPortapapeles() {
             alert("No se pudo copiar el enlace. Por favor, inténtalo de nuevo.");
         });
 }
-window.copiarAlPortapapeles = copiarAlPortapapeles;
+window.copiarAlPortapaples = copiarAlPortapapeles;
 
 actualizarURL = (function (originalActualizarURL) {
     return function () {
@@ -424,6 +424,8 @@ function init() {
         if (modal) modal.style.display = "none";
     }
 
+    cargarDatosDesdeURL(); // <-- Ahora primero carga los datos de la URL
+
     createSliders();
 
     d3.select("#resetButton").on("click", resetValues);
@@ -437,7 +439,6 @@ function init() {
 
     renderReferenciaAlineacionesViz();
 
-    cargarDatosDesdeURL();
     actualizarEnlacesDeCompartir();
 }
 
