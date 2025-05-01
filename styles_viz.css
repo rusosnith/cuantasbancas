@@ -194,10 +194,6 @@
         /* Permitir que las bancas se ajusten al ancho del bloque */
     }
 
-    #bancas-visualization-container .label span:first-of-type {
-        font-size: 12px;
-    }
-
     #bancas-visualization-container .label {
         height: 74px;
         font-size: 11px;
@@ -211,5 +207,17 @@
     #bancas-visualization-container .metrica-item {
         font-size: 10px;
         height: 18px;
+    }
+
+    #bancas-visualization-container .label .title {
+        font-size: 12px;
+        font-weight: bold;
+    }
+    #bancas-visualization-container .label {
+        width:95%
+    }
+
+    #bancas-visualization-container .metricas-flex{
+        gap:2px;
     }
 }

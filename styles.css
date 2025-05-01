@@ -240,6 +240,16 @@ footer .credits i {
     margin-top: 6px;
 }
 
+.referencia-metricas{
+    margin: auto;
+    width: fit-content;
+    min-width: 0px;
+    padding: 3px 12px;
+    font-size:14px
+}
+
+
+
 .referencia-item {
     display: flex;
     align-items: center;
@@ -330,7 +340,7 @@ footer .credits i {
     }
 
     .referencia-container {
-        padding: 0 11px;
+        padding: 3 11px;
     }
 
     .slider-container {

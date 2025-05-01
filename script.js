@@ -191,9 +191,7 @@ function renderReferenciaAlineacionesViz() {
     contenedor.selectAll(".referencia-container").remove();
     const ref = contenedor.append("div")
         .attr("class", "referencia-container referencia-metricas")
-        .style("margin", "6px auto 0 auto")
-        .style("width", "fit-content")
-        .style("min-width", "0");
+      
     ref.html(`
         <span class='referencia-bancas-label' style='margin-right:6px;'>Bancas:</span>
         <span class='metrica-item' style='min-width:60px;'><i class="fa-solid fa-chair"></i> totales</span>
