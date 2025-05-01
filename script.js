@@ -186,7 +186,20 @@ function renderReferenciaAlineaciones(contenedorSelector) {
 
 // Renderizar la referencia de alineaciones debajo del gráfico apilado
 function renderReferenciaAlineacionesViz() {
-    renderReferenciaAlineaciones("#referencia-alineaciones-viz");
+    // Solo mostrar la referencia de iconos en el dataviz, no la de colores
+    const contenedor = d3.select("#referencia-alineaciones-viz");
+    contenedor.selectAll(".referencia-container").remove();
+    const ref = contenedor.append("div")
+        .attr("class", "referencia-container referencia-metricas")
+        .style("margin", "6px auto 0 auto")
+        .style("width", "fit-content")
+        .style("min-width", "0");
+    ref.html(`
+        <span class='referencia-bancas-label' style='margin-right:6px;'>Bancas:</span>
+        <span class='metrica-item' style='min-width:60px;'><i class="fa-solid fa-chair"></i> totales</span>
+        <span class='metrica-item' style='min-width:60px;'><i class="fa-solid fa-recycle"></i> en juego</span>
+        <span class='metrica-item' style='min-width:60px;'><i class="fa-solid fa-trophy"></i> ganadas</span>
+    `);
 }
 
 // 6. Funciones de UI (sliders, visualización, actualización de valores)
@@ -413,7 +426,7 @@ function actualizarBancas() {
         )
         .map((d) => d[1])
 
-
+console.log(bancasTotales);
     createVisualization(bancasTotales);
 }
 

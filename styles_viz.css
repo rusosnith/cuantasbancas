@@ -37,7 +37,6 @@
     width: 120px;
     /* Ancho fijo para evitar que se expanda */
     height: 16px;
-    border-radius: 4px;
     margin: 0px;
     display: flex;
     align-items: center;
@@ -48,33 +47,28 @@
     padding: 0 8px;
     box-sizing: border-box;
     max-width: 120px;
-    /* Limita el ancho máximo */
     flex: 0 0 auto;
-    /* Evita que el elemento crezca o se contraiga */
     flex-shrink: 0;
-    /* Evita que el elemento se expanda más allá de su contenedor */
     pointer-events: none;
-    /* Desactiva eventos del mouse */
     user-select: none;
-    /* Desactiva selección de texto */
     -ms-user-select: none;
-    /* Desactiva selección de texto en IE */
     -webkit-user-select: none;
-    /* Desactiva selección de texto en Safari */
-    font-weight: bold;
-
-
 }
 
 #bancas-visualization-container .banca.ganada {
     color: white;
     text-shadow: 0px 0px 2px rgba(0, 0, 0, 0.7);
+    border-radius: 6px;
+    font-weight: bold;
+
+
 }
 
 
 #bancas-visualization-container .banca.actual {
     color: #000;
-    opacity: 0.5;
+    opacity: 0.7;
+    border-radius: 2px;
 
 }
 
@@ -87,10 +81,11 @@
     flex-flow: column;
     font-size: 12px;
     font-weight: normal;
+    width: 85%;
 
 }
 
-#bancas-visualization-container .label span:first-of-type {
+#bancas-visualization-container .label .title {
     font-size: 14px;
     font-weight: bold;
 }
@@ -134,24 +129,40 @@
     margin-right: 5px;
 }
 
-#bancas-visualization-container button {
-    display: block;
-    margin: 20px auto;
-    padding: 10px 20px;
-    background-color: #4a86e8;
-    color: white;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    font-size: 16px;
-}
 
-#bancas-visualization-container button:hover {
-    background-color: #3a76d8;
-}
 
 #bancas-visualization-container .banca-actual-top {
+    margin-top: 2px;
+}
+
+#bancas-visualization-container .metricas-flex {
+    display: flex;
+    flex-direction: row;
+    gap: 4px;
+    border-radius: 2px;
+    justify-content: space-between;
+    align-items: center;
+    margin: auto;
     margin-top: 3px;
+    margin-bottom: 1px;
+    padding: 2px 0;
+    width:100%
+
+}
+
+#bancas-visualization-container .metrica-item {
+    flex: 1 1 0;
+    display: flex;
+    background-color: #eee;
+    color:#666;
+    padding:2px;
+    align-items: center;
+    justify-content: center;
+    min-width: 0;
+    height: 14px;
+    font-size: 12px;
+    border-radius: 2px;
+    gap: 2px;
 }
 
 @media (max-width: 600px) {
@@ -190,5 +201,15 @@
     #bancas-visualization-container .label {
         height: 74px;
         font-size: 11px;
+    }
+
+    #bancas-visualization-container .metricas-flex {
+        font-size: 10px;
+        height: 20px;
+        padding: 1px 0;
+    }
+    #bancas-visualization-container .metrica-item {
+        font-size: 10px;
+        height: 18px;
     }
 }
