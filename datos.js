@@ -69,7 +69,7 @@ export const partidos = [
             "BLAS ALAYO",
             "AGNONE CONTE"
         ],
-        "porcentaje": 5,
+        "porcentaje": 2.31,
         "locked": false
     },
     {
@@ -88,7 +88,7 @@ export const partidos = [
             "BORGES",
             "MESISTRANO"
         ],
-        "porcentaje": 8,
+        "porcentaje": 8.08,
         "locked": false
     },
     {
@@ -107,7 +107,7 @@ export const partidos = [
             "PALACIOS",
             "MARTIODA CAMPOS"
         ],
-        "porcentaje": 4,
+        "porcentaje": 2.5,
         "locked": false
     },
     {
@@ -126,7 +126,7 @@ export const partidos = [
             "FERNÁNDEZ MARTI",
             "MÁSCOLO"
         ],
-        "porcentaje": 5,
+        "porcentaje": 3.16,
         "locked": false
     },
     {
@@ -145,7 +145,7 @@ export const partidos = [
             "LUCIANO",
             "HAEBERER"
         ],
-        "porcentaje": 1,
+        "porcentaje": 0.38,
         "locked": false
     },
     {
@@ -164,7 +164,7 @@ export const partidos = [
             "PICCIOLI",
             "RENDICH"
         ],
-        "porcentaje": 1,
+        "porcentaje": 0.62,
         "locked": false
     },
     {
@@ -183,7 +183,7 @@ export const partidos = [
             "VARTABEDIAN",
             "KIENAST"
         ],
-        "porcentaje": 20,
+        "porcentaje": 30.13,
         "locked": false
     },
     {
@@ -202,7 +202,7 @@ export const partidos = [
             "DEVITA",
             "DE SANTI"
         ],
-        "porcentaje": 1,
+        "porcentaje": 1.67,
         "locked": false
     },
     {
@@ -221,7 +221,7 @@ export const partidos = [
             "FERRI",
             "BONZO"
         ],
-        "porcentaje": 1,
+        "porcentaje": 0.13,
         "locked": false
     },
     {
@@ -240,7 +240,7 @@ export const partidos = [
             "LECKIE",
             "MARTINEZ CACERES"
         ],
-        "porcentaje": 6,
+        "porcentaje": 2.62,
         "locked": false
     },
     {
@@ -259,7 +259,7 @@ export const partidos = [
             "FERREYRA",
             "ROMERO"
         ],
-        "porcentaje": 1,
+        "porcentaje": 0.2,
         "locked": false
     },
     {
@@ -278,7 +278,7 @@ export const partidos = [
             "CAPORICCIO",
             "IAÑEZ"
         ],
-        "porcentaje": 20,
+        "porcentaje": 27.35,
         "locked": false
     },
     {
@@ -297,7 +297,7 @@ export const partidos = [
             "ALBISUA",
             "MACCHI"
         ],
-        "porcentaje": 2,
+        "porcentaje": 2.03,
         "locked": false
     },
     {
@@ -316,7 +316,7 @@ export const partidos = [
             "DIAZ",
             "FLEJSZ"
         ],
-        "porcentaje": 2,
+        "porcentaje": 0.51,
         "locked": false
     },
     {
@@ -335,7 +335,7 @@ export const partidos = [
             "BRACCIA",
             "JARVIS"
         ],
-        "porcentaje": 20,
+        "porcentaje": 15.92,
         "locked": false
     },
     {
@@ -354,7 +354,7 @@ export const partidos = [
             "ACEVEDO",
             "MARMONI"
         ],
-        "porcentaje": 1,
+        "porcentaje": 0.33,
         "locked": false
     },
     {
@@ -373,16 +373,16 @@ export const partidos = [
             "VIVES",
             "AUCE"
         ],
-        "porcentaje": 1,
+        "porcentaje": 0.16,
         "locked": false
     },
     // Agregar al final el partido de voto en blanco
     {
-        "partido": "EN BLANCO / ANULADOS",
-        "partidoOrig": "EN BLANCO / ANULADOS",
+        "partido": "EN BLANCO",
+        "partidoOrig": "EN BLANCO",
         "alineacion": "Voto en blanco",
         "candidatos": ["-"],
-        "porcentaje": 1,
+        "porcentaje": 1.9,
         "locked": false,
         "color": "#bbb"
     }

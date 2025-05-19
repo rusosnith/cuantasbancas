@@ -5,7 +5,7 @@ import { createVisualization } from './script_viz.js';
 
 // === CONFIGURACIÓN GLOBAL ===
 const CONFIG = {
-    porcentajeMaximo: 40,
+    porcentajeMaximo: 35,
     mostrarPanelBancasNuevas: false, // Cambia a false para ocultar el panel y no calcularlo
 };
 // ===========================
