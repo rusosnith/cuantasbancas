@@ -272,11 +272,9 @@ function createSliders() {
 
 function updateLockIcon(index) {
     const lockIcon = document.getElementById(`lock-${index}`);
-    if (partidos[index].locked) {
-        lockIcon.style.visibility = "visible";
-    } else {
-        lockIcon.style.visibility = "hidden";
-    }
+    if (!lockIcon) return;
+    lockIcon.style.visibility = "visible";
+    lockIcon.style.color = partidos[index].locked ? "#555" : "#ccc";
 }
 
 function updateSliderColor(index, color, porcentaje) {
